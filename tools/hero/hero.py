@@ -292,7 +292,7 @@ def build(L, uid, seed=7):
             f'<text class="sm ct" x="{f(cx_ + 8 * s)}" y="{f(cy_ + 12 * s)}">brief</text></g>'
             f'<g class="cc p-tany"><g class="yg">{cc}</g><path class="cl" d="{cl}"/></g>')
 
-    # ------------------------------------------------ the folder you own, its dated pages, the cloud
+    # ------------------------------------------------ the folder you own, its dated pages
     folder = f'<path class="fb" d="M{P(fx, fy + fh)}V{f(fy)}h{f(30 * s)}l{P(5 * s, 6 * s)}H{f(fx + fw)}V{f(fy + fh)}z"/>'
     leaves = ''
     for n, dt in enumerate(('2026-11-08', '2026-11-09', '2026-11-10')):
@@ -307,12 +307,8 @@ def build(L, uid, seed=7):
             leaves += (f'<g class="lf"><path class="pp" d="M{P(qx0, qy0)}h{f(lw)}v{f(lh)}h{f(-lw)}z"/>'
                        f'<text class="dt" x="{f(qx0 + 5 * s)}" y="{f(qy0 + 9 * s)}">{dt}</text></g>')
     front = f'<path class="ff" d="M{P(fx - 2 * s, fy + 20 * s)}H{f(fx + fw + 2 * s)}L{P(fx + fw - 1 * s, fy + fh)}H{f(fx + 1 * s)}z"/>'
-    clx, cly = L['cloud']
-    cloud = f'<path class="cu" d="M{P(clx - 15 * s, cly + 8 * s)}a6 6 0 0 1 1-12a9 9 0 0 1 17-3a7 7 0 0 1 11 6a5 5 0 0 1 0 9z"/>'
-    sync = f'M{P(fx + fw + 4 * s, fy + fh * .6)}L{P(clx - 18 * s, cly + 2 * s)}'
-    defs.append(f'<path id="{uid}c3" pathLength="100" d="{sync}"/>')
-    g.append(f'<g class="fo p-moin"><path class="sy" d="{sync}"/>{folder}{leaves}{front}{cloud}</g>')
-    lab.append(small(*L['cloud_lab'], 'your folder: iCloud Drive, WebDAV, S3', 'sm', 'end'))
+    g.append(f'<g class="fo p-moin">{folder}{leaves}{front}</g>')
+    lab.append(small(*L['folder_lab'], 'your folder', 'sm', 'start'))
 
     # ------------------------------------------------ Lemna: the leaf and its caret, summoned on the surface
     lx_, ly_ = L['lemna']
@@ -359,7 +355,6 @@ def build(L, uid, seed=7):
     mv += f'<g class="p-tany">{card}<g class="yg">{gys}</g>'
     mv += f'<ellipse class="tg" cx="{f(tx)}" cy="{f(ty)}" rx="{f(18 * ts)}" ry="{f(30 * ts)}" filter="url(#{uid}gl)"/></g>'
     mv += f'<g class="p-lemna">{rip}{txl}</g>'
-    mv += f'<g class="p-moin">{comet(3)}</g>'
     g.append(mv)
     caps = ''.join(f'<text class="cap k k{n + 1}" x="{f(x)}" y="{f(y)}"{"" if a == "start" else f" text-anchor={chr(34)}{a}{chr(34)}"}>{CAPS[n]}</text>'
                    for n, (x, y, a) in enumerate(L['caps']))
@@ -370,7 +365,7 @@ def build(L, uid, seed=7):
 ARIA = ('Glia, a Mac app, drawn as a window holding an astrocyte and terminal panes for shells and agents, each linked to a '
         'remote host outside; Importin, a pore through which mail enters one agent; Tanycyte, whose long process reaches the '
         'night’s stream and brings a brief into Glia; Lemna, a leaf on the surface above any app; Moin Journal, beside a folder '
-        'of dated pages that syncs to your storage.')
+        'of dated pages.')
 
 
 def svg(L, uid, cls):
@@ -394,7 +389,7 @@ LAYOUTS = {
         tany=(92, 188), tany_sc=1, tany_end=(118, 41), tany_bend=-12, tany_foot0=(104, 200), tany_fbend=-8,
         card=(204, 140, 86, 52),
         lemna=(985, 150), lemna_sc=1, mark=(1004, 147, 2.6, 52), words=[8, 5, 11, 6, 9],
-        moin=(870, 436), moin_sc=1, folder=(998, 408, 108, 70), cloud=(1156, 452), cloud_lab=(1188, 506),
+        moin=(870, 436), moin_sc=1, folder=(998, 408, 108, 70), folder_lab=(1114, 456),
         env_r=40, pore_deg=0, pore_k=1.0,
         letters=[(664, 208, .4, 2.0), (684, 220, 1.4, 2.9), (704, 210, 2.4, 3.45)],
         labels=[('glia', 470, 476, 'Glia', 'Mac terminal for remote hosts;|agents and sessions outlive the connection.'),
@@ -417,7 +412,7 @@ LAYOUTS = {
         tany=(40, 96), tany_sc=.7, tany_end=(64, 26), tany_bend=-6, tany_foot0=(42, 114), tany_fbend=6,
         card=(24, 178, 80, 48),
         lemna=(226, 684), lemna_sc=.82, mark=(242, 682, 2.2, 42), words=[7, 4, 9, 5, 7],
-        moin=(70, 896), moin_sc=.82, folder=(150, 872, 96, 62), cloud=(332, 900), cloud_lab=(382, 980),
+        moin=(70, 896), moin_sc=.82, folder=(150, 872, 96, 62), folder_lab=(254, 912),
         env_r=34, pore_deg=0, pore_k=.8,
         letters=[(330, 216, .4, 2.0), (346, 228, 1.4, 2.9), (362, 218, 2.4, 3.45)],
         labels=[('glia', 195, 574, 'Glia', 'Mac terminal for remote hosts;|agents and sessions outlive the connection.'),

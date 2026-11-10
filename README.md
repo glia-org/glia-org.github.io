@@ -36,10 +36,11 @@ files, served by GitHub Pages.
    go to one column below 960 px.
 6. **Budget.** First load at most 600 kB, at most 120 kB without images, counted as transferred (text gzipped, as
    GitHub Pages serves it; of a light/dark pair of pictures the larger). On 2026-11-10, measured by
-   `checks/site.py`: 294.5 kB, of which 107.3 kB without images (the page with both inline drawings 26.4 kB, the font
+   `checks/site.py`: 294.3 kB, of which 107.1 kB without images (the page with both inline drawings 26.2 kB, the font
    75.0 kB, the stylesheet 5.5 kB, the script 0.3 kB).
-7. **One place for Glia's page.** Glia's band links to its page as `href="/glia/"`, the only such link on the page;
-   change it there when the path is settled.
+7. **One place for Glia's page.** Glia's page is not published, so its band has no link. An HTML comment at Glia's
+   state line holds the link (`href="/glia/"`) and where it goes back once the page is published; it is the only
+   place for that path.
 
 ## Preview
 
@@ -51,8 +52,9 @@ Open `index.html` in a browser; no server is needed.
 `index.html` is the source of truth; run the generator only to change the drawing. The drawing's CSS (the shared
 classes, the loop's moments, the day and night paints) is the last block of `assets/site.css` and is kept by hand.
 `tools/hero/tissue.py` holds the drawing helpers (paths, tapering processes, cells, organelles). The generator was
-approved as a live mockup on 2026-11-10; its output here differs from the mockup's only in the labels' links (to the
-project sections), the classes that tell the two drawings apart, and line breaks.
+approved as a live mockup on 2026-11-10; its output here differs from the mockup's in the labels' links (to the project
+sections), the classes that tell the two drawings apart, line breaks, and Moin Journal's folder: the cloud, the
+sync line and its moving dot are gone and the label reads `your folder`, since Moin Journal's build has no sync yet.
 
 ## Fonts
 
@@ -91,12 +93,6 @@ README, site and documents as of 2026-11-10.
 banned word or "!" at a sentence end, the font subset covering the page's text, every local file and `#fragment`
 present, no id twice, every element closed, no network calls in scripts, and the budget. It lists the external
 links, the links to other pages of this site and the size of every file the page loads.
-
-## Open points
-
-- `/glia/` is not published yet; the link in Glia's band leads nowhere until it is.
-- The hero's Moin Journal label names iCloud Drive, WebDAV and S3 for the folder; Moin Journal's phase 2 build has
-  no sync of its own (its `docs/mac-app.md`), WebDAV is in its transport crate, S3 is planned.
 
 ## Licence
 
