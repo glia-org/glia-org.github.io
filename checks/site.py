@@ -9,11 +9,16 @@
 - no placeholder is left: ⟨measure:…⟩, TODO, TBD, FIXME, XXX, lorem ipsum;
 - the page's text has none of the banned words (blazing, powerful, seamless and other superlatives) and no "!" at a
   sentence end;
-- the page's text outside <code> and <kbd> uses only the characters the Literata subset holds (README.md, Fonts);
+- the page's text outside <code>, <kbd> and an element with data-face (a band set in a face of its own: Cascadia Code
+  or the system's) uses only the characters the Literata subset holds (README.md, Fonts);
 - every local file and every #fragment the page refers to exists; no id is used twice;
-- every element that is opened is closed, in order; scripts make no network requests;
-- the budget: the first load, as transferred (text gzipped, as GitHub Pages serves it; of a light/dark pair of
-  pictures the larger), at most 600 kB, and at most 120 kB without the images.
+- every element that is opened is closed, in order; scripts, the bands' data-js scripts among them, make no network
+  requests and hold no http(s) URL;
+- the budget, as transferred (text gzipped, as GitHub Pages serves it; of a light/dark pair of pictures the larger):
+  what every load fetches (the page, its stylesheets and scripts, the frame's font, the icons) at most 160 kB, and the
+  whole page once every band has come into view (also the bands' fonts, their pictures with loading="lazy" and their
+  data-js scripts) at most 1.1 MB. Lemna's own Latin file, fetched only for a character typed into its box that the
+  subset lacks, is listed apart.
 
 Lists the external links and the size of every file the page loads. Standard library only. Exits with 1 when a
 check fails. Adapted from importin's checks/site.py.
@@ -45,9 +50,12 @@ URL_IN_VALUE = re.compile(r"^\s*(https?:)?//", re.I)
 # the characters assets/fonts/literata-latin.woff2 holds (README.md, Fonts)
 FONT_CHARS = set(map(chr, range(0x20, 0x7F))) | set(" ·×é–—‘’‚“”…\n\t")
 TEXT_TYPES = (".html", ".css", ".js", ".svg")
-BUDGET_ALL, BUDGET_NO_IMAGES = 600_000, 120_000
+BUDGET_LOAD, BUDGET_FULL = 160_000, 1_100_000
+# fetched only when a character outside the Literata subset is typed into Lemna's box (assets/bands/lemna.css)
+ON_DEMAND = {os.path.join(ROOT, "assets", "fonts", "lemna", "literata-latin.woff2")}
 
 errors, links, site_links, loaded = [], [], [], set()
+eager, near = set(), set()  # fetched by every load; fetched as a band comes near the view
 pairs = []  # files of which a page load fetches one: the <source> and <img> of one <picture>
 
 
@@ -63,7 +71,7 @@ def rel(path):
     return os.path.relpath(path, ROOT)
 
 
-def check_css_text(text, where, base):
+def check_css_text(text, where, base, band=False):
     for _ in re.finditer(r"@import\b", text):
         errors.append(f"{where}: @import (inline it instead)")
     for m in re.finditer(r"url\(\s*['\"]?([^'\")]+)", text):
@@ -78,6 +86,7 @@ def check_css_text(text, where, base):
             errors.append(f"{where}: url({url}) does not exist")
         else:
             loaded.add(f)
+            (near if band else eager).add(f)  # a band's fonts wait until the band is laid out
 
 
 def check_js_text(text, where):
@@ -94,22 +103,22 @@ class Page(HTMLParser):
         self.path, self.base = path, os.path.dirname(path)
         self.stack, self.ids, self.frags = [], {}, []
         self.text, self.raw, self.raw_buf = [], None, []  # visible text; the tag whose raw content is read
-        self.picture = None
+        self.picture, self.picture_lazy = None, False
 
     def where(self):
         return f"{rel(self.path)}:{self.getpos()[0]}"
 
     def mono(self):
-        return any(t in ("code", "kbd") for t, _ in self.stack)
+        return any(t in ("code", "kbd") or face for t, _, face in self.stack)
 
     def handle_starttag(self, tag, attrs):
         self.attrs(tag, attrs)
         if tag in ("style", "script"):
             self.raw, self.raw_buf = tag, []
         if tag == "picture":
-            self.picture = []
+            self.picture, self.picture_lazy = [], False
         if tag not in VOID:
-            self.stack.append((tag, self.getpos()[0]))
+            self.stack.append((tag, self.getpos()[0], "data-face" in dict(attrs)))
 
     def handle_startendtag(self, tag, attrs):
         self.attrs(tag, attrs)
@@ -125,7 +134,7 @@ class Page(HTMLParser):
         relset = set(a.get("rel", "").split())
         for name in ("alt", "aria-label", "title", "content", "placeholder"):
             if a.get(name) and not self.raw:
-                self.text.append((self.getpos()[0], a[name], False))
+                self.text.append((self.getpos()[0], a[name], self.mono() or "data-face" in a))
         for name, value in a.items():
             if name == "xmlns" or name.startswith("xmlns:"):
                 continue  # a namespace name, never fetched
@@ -135,11 +144,20 @@ class Page(HTMLParser):
                 for url in (value.split(",") if name == "srcset" else [value]):
                     url = url.strip().split(" ")[0]
                     if url:
-                        self.ref(tag, name, url, relset)
+                        self.ref(tag, name, url, relset, a.get("loading") == "lazy")
+            elif name == "data-js":  # a band's script, fetched by assets/bands/load.js as the band comes near
+                f = local_file(value, self.base)
+                if external(value) or value.startswith("/") or not value.endswith(".js"):
+                    errors.append(f"{self.where()}: data-js=\"{value}\" is not a script of this site")
+                elif not os.path.exists(f):
+                    errors.append(f"{self.where()}: {value} does not exist")
+                else:
+                    loaded.add(f)
+                    near.add(f)
             elif URL_IN_VALUE.search(value):
                 errors.append(f"{self.where()}: <{tag} {name}=\"{value}\"> holds a URL; only <a href> may link out")
 
-    def ref(self, tag, name, url, relset):
+    def ref(self, tag, name, url, relset, lazy=False):
         if url.startswith("#"):
             self.frags.append((url[1:], self.getpos()[0]))
             return
@@ -173,7 +191,9 @@ class Page(HTMLParser):
         elif loads:
             if self.picture is not None and tag in ("source", "img"):
                 self.picture.append(f)
+                self.picture_lazy = self.picture_lazy or lazy
             loaded.add(f)
+            (near if lazy else eager).add(f)
 
     def handle_endtag(self, tag):
         if tag == self.raw:
@@ -186,11 +206,14 @@ class Page(HTMLParser):
         if tag == "picture":
             if self.picture:
                 pairs.append(self.picture)
-            self.picture = None
+                if self.picture_lazy:  # its <source> waits with its <img>
+                    eager.difference_update(self.picture)
+                    near.update(self.picture)
+            self.picture, self.picture_lazy = None, False
         if tag in VOID:
             return
         if not self.stack or self.stack[-1][0] != tag:
-            open_ = self.stack[-1] if self.stack else ("nothing", 0)
+            open_ = self.stack[-1] if self.stack else ("nothing", 0, False)
             errors.append(f"{self.where()}: </{tag}> closes <{open_[0]}> from line {open_[1]}")
             for i in range(len(self.stack) - 1, -1, -1):
                 if self.stack[i][0] == tag:
@@ -207,7 +230,7 @@ class Page(HTMLParser):
 
     def close(self):
         super().close()
-        for tag, line in self.stack:
+        for tag, line, _ in self.stack:
             errors.append(f"{rel(self.path)}:{line}: <{tag}> is never closed")
         for frag, line in self.frags:
             if frag not in self.ids:
@@ -243,10 +266,6 @@ def transferred(path):
     return len(gzip.compress(data, 9)) if path.endswith(TEXT_TYPES) else len(data)
 
 
-def is_image(path):
-    return os.sep + "img" + os.sep in path or path.endswith((".png", ".jpg", ".webp", "favicon.svg"))
-
-
 def main(argv):
     if argv:
         print(__doc__)
@@ -258,7 +277,8 @@ def main(argv):
     check_placeholders(PAGE)
     for f in sorted(loaded):
         if f.endswith(".css"):
-            check_css_text(open(f, encoding="utf-8").read(), rel(f), os.path.dirname(f))
+            band = os.path.dirname(f) == os.path.join(ROOT, "assets", "bands")
+            check_css_text(open(f, encoding="utf-8").read(), rel(f), os.path.dirname(f), band)
     for f in sorted(loaded):
         if f.endswith(".js"):
             check_js_text(open(f, encoding="utf-8").read(), rel(f))
@@ -274,23 +294,25 @@ def main(argv):
     print("links to other pages of this site (not checked here):")
     for url in sorted(set(site_links)):
         print("  " + url)
-    print("files the page loads (bytes as stored, as transferred):")
-    files = [PAGE] + sorted(loaded)
-    for f in files:
-        print(f"  {os.path.getsize(f):>8} {transferred(f):>8}  {rel(f)}")
+    print("files the page loads (bytes as stored, as transferred; when: load = every load, near = as its band comes")
+    print("near the view, typed = only for a character the Literata subset lacks, typed into Lemna's box):")
     # a page load fetches one picture of each light/dark pair: count the larger
     skip = set()
     for pair in pairs:
         skip |= set(sorted(pair, key=transferred)[:-1])
-    first = [f for f in files if f not in skip]
-    total = sum(transferred(f) for f in first)
-    no_img = sum(transferred(f) for f in first if not is_image(f))
-    print(f"  first load as transferred: {total} bytes, {no_img} without images "
-          f"(budgets {BUDGET_ALL} and {BUDGET_NO_IMAGES})")
-    if total > BUDGET_ALL:
-        errors.append(f"first load {total} bytes is over {BUDGET_ALL}")
-    if no_img > BUDGET_NO_IMAGES:
-        errors.append(f"first load without images {no_img} bytes is over {BUDGET_NO_IMAGES}")
+    on_load = [PAGE] + sorted(eager)
+    on_near = sorted(near - eager - ON_DEMAND)
+    for when, group in (("load", on_load), ("near", on_near), ("typed", sorted(ON_DEMAND & loaded))):
+        for f in group:
+            print(f"  {when:5} {os.path.getsize(f):>8} {transferred(f):>8}  {rel(f)}")
+    load = sum(transferred(f) for f in on_load if f not in skip)
+    full = load + sum(transferred(f) for f in on_near if f not in skip)
+    print(f"  as transferred: every load {load} bytes (budget {BUDGET_LOAD}); with every band in view {full} bytes "
+          f"(budget {BUDGET_FULL})")
+    if load > BUDGET_LOAD:
+        errors.append(f"every load {load} bytes is over {BUDGET_LOAD}")
+    if full > BUDGET_FULL:
+        errors.append(f"the whole page {full} bytes is over {BUDGET_FULL}")
     if errors:
         print(f"\n{len(errors)} problem(s):")
         for e in errors:

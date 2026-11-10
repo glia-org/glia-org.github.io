@@ -1,0 +1,200 @@
+/* Glia's band: a miniature of Glia's page (glia.github.io, commit 1e02732): its look (one mono font, Cascadia Code;
+   1 px frames with the title in the top border; the frame you read in the accent; a status line), Tokyo Night, its
+   section rhythm, and its hero: the astrocyte field (WebGL 2, bands/glia.js) behind the panes, the specimen pane as its
+   loupe, and the drawn window. Classes and ids of Glia's page are prefixed gl-; nothing here reaches outside the band.
+   States, set on the band: none (scripts on, not yet run: the window at rest), gl-gl (the field runs), gl-play (the
+   window plays), gl-nogl (no WebGL 2, or ?nogl: the still); without scripts the <noscript> style in index.html gives the
+   still too. Cascadia Code (OFL, fonts/glia/OFL-CascadiaCode.txt), unmodified. */
+@font-face{font-family:"Cascadia Code";src:url(../fonts/glia/CascadiaCode.woff2) format("woff2");font-weight:200 700;
+  font-style:normal;font-display:swap}
+.b-glia{
+  --bg:#1a1b26;--raised:#13141e;--line:#44475a;--hi:#c0caf5;--mid:#a7b0d6;--low:#7e84a2;--sel:#283457;
+  --accent:#7aa2f7;--work:#e0af68;--need:#f7768e;--done:#9ece6a;--idle:#606680;
+  --mono:"Cascadia Code",ui-monospace,"SF Mono",Menlo,Consolas,monospace;--gap:1.2em;
+  color-scheme:dark;position:relative;overflow:hidden;background:var(--bg);color:var(--mid);
+  font:15px/1.6 var(--mono);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.b-glia a{color:var(--accent);text-decoration:none}
+.b-glia a:hover{text-decoration:underline;text-underline-offset:.2em}
+.b-glia code,.b-glia kbd{font:inherit}
+.b-glia code{color:var(--hi)}
+.b-glia kbd{color:var(--accent)}
+.b-glia b,.b-glia strong{color:var(--hi);font-weight:600}
+.b-glia ::selection{background:var(--sel);color:var(--hi)}
+.b-glia :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:0}
+
+/* the field: one canvas over the whole band, under the tiles; drawn only while the band is in view */
+.gl-field{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* ---------- tiles ---------- */
+.gl-tiles{position:relative;z-index:1;max-width:132ch;margin:0 auto;padding:3.4em 2ch 3em;display:flex;flex-direction:column;
+  gap:var(--gap)}
+.gl-row{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+.gl-row.gl-r32{grid-template-columns:3fr 2fr}
+.gl-pane{position:relative;min-width:0;border:1px solid var(--line);padding:1.6em 3ch 1.5em;display:flex;flex-direction:column;
+  gap:1em;background:var(--bg)}
+.gl-pane.gl-focus{border-color:var(--accent)}
+.gl-ph,.gl-pf{position:absolute;top:-.5em;line-height:1;padding:0 .6ch;background:var(--bg);white-space:nowrap}
+.gl-ph{left:2ch;color:var(--hi)}
+.gl-ph i{font-style:normal;color:var(--low);margin-right:.6ch}
+.gl-pane.gl-focus>.gl-ph,.gl-pane.gl-focus>.gl-ph i{color:var(--accent)}
+.gl-pf{right:2ch;color:var(--low)}
+.gl-pb{position:absolute;bottom:-.5em;left:2ch;line-height:1;padding:0 .6ch;background:var(--bg);white-space:nowrap;
+  color:var(--low);font-size:13px}
+/* the specimen: a window onto the field; its labels and scale bar only while the field runs */
+.gl-pane.gl-specimen{background:transparent;min-height:22em;cursor:crosshair;justify-content:flex-end}
+.gl-specimen>.gl-pf,.gl-specimen>.gl-pb{display:none}
+.gl-gl .gl-specimen>.gl-pf,.gl-gl .gl-specimen>.gl-pb{display:block}
+.gl-specimen .gl-nogl{display:none}
+.gl-nogl .gl-specimen .gl-nogl{display:block}
+/* the specimen's scale bar, 20 cells (about 20 µm of astrocyte); glia.js sets its width as the view zooms */
+.gl-sb{display:none;position:absolute;right:2ch;bottom:1.4em;padding:.2em 0 .45em;border-bottom:2px solid var(--mid);
+  background:var(--bg);color:var(--mid);font-size:13px;line-height:1;text-align:center;white-space:nowrap;pointer-events:none}
+
+.gl-sub{font-size:1.13em;color:var(--hi);max-width:64ch}
+.gl-pane p{max-width:68ch}
+.gl-note{color:var(--low);font-size:13px;max-width:72ch}
+.gl-ls{display:flex;flex-direction:column;gap:.35em}
+.gl-ls li{padding-left:2ch;position:relative;max-width:68ch}
+.gl-ls li::before{content:"-";position:absolute;left:0;color:var(--low)}
+.gl-ls code{white-space:nowrap}
+
+/* the lockup: cells stay whole pixels (2 or 4 px); the accent cell blinks like the cursor */
+.gl-lk{display:block;width:354px;height:100px;margin:.2em 0 .4em}
+.gl-lk .gl-w{fill:var(--hi)}.gl-lk .gl-c{fill:var(--accent);animation:gl-blink 1.06s step-end infinite}
+@keyframes gl-blink{50%{fill:transparent}}
+
+/* the still (assets/img/glia/window-drawing.png): without WebGL 2 and without scripts */
+.gl-still{display:none;width:100%;height:auto;border:1px solid var(--line)}
+.gl-nogl .gl-still{display:block}
+.gl-nogl .gl-app{display:none}
+.gl-cap-play{display:none}
+.gl-play .gl-cap-play{display:inline}
+.gl-play .gl-cap-rest{display:none}
+.gl-defs{position:absolute;width:0;height:0;overflow:hidden}
+
+/* ---------- the app, drawn (Glia's page, prefixed) ---------- */
+.gl-mock{overflow-x:auto;margin-top:.4em}
+.gl-app{font-size:13px;line-height:1.55;color:var(--hi);background:var(--bg);border:1px solid var(--line);min-width:760px;display:grid;grid-template-rows:1.6em 1fr auto}
+.gl-app{position:relative;transition:opacity .14s linear}
+.gl-app.gl-fade{opacity:0}
+.gl-app .gl-bar{display:flex;align-items:center;gap:.6ch;padding:0 1ch;background:var(--raised)}
+.gl-app .gl-kb{position:absolute;left:50%;bottom:3em;transform:translateX(-50%);z-index:6;padding:.15em 1.4ch;border:1px solid var(--accent);background:var(--bg);color:var(--accent);font-size:17px;font-weight:600;line-height:1.5;white-space:nowrap;opacity:0;transition:opacity .14s linear}
+.gl-app .gl-kb.gl-on{opacity:1}
+.gl-app .gl-ptr{position:absolute;left:0;top:0;width:11px;height:11px;border-radius:50%;background:var(--hi);box-shadow:0 0 0 1.5px var(--bg);opacity:0;z-index:2;pointer-events:none;transition:transform .35s ease-out,opacity .14s linear}
+.gl-app .gl-ptr.gl-on{opacity:1}
+.gl-app .gl-ptr.gl-click::after{content:"";position:absolute;inset:-7px;border:1.5px solid var(--hi);border-radius:50%}
+.gl-app.gl-down #gl-agentpane,.gl-app.gl-down #gl-shpane{opacity:.4}
+.gl-bbox{position:absolute;left:1.2ch;right:1.2ch;bottom:1em;border:1px solid var(--accent);background:var(--bg);padding:.7em 0 .1em;white-space:pre;line-height:1.5;z-index:1}
+.gl-bbox>.gl-ph{left:1.2ch;font-size:13px;color:var(--hi)}
+.gl-bbox .gl-l{padding:0 1.2ch;color:var(--mid)}
+.gl-bbox .gl-l.gl-c{color:var(--hi)}
+.gl-bbox .gl-l .gl-k{display:inline-block;width:10ch;color:var(--low)}
+.gl-bbox .gl-l .gl-v{color:var(--hi)}
+.gl-bbox .gl-a{display:flex;justify-content:space-between;padding:0 1.2ch;color:var(--hi)}
+.gl-bbox .gl-a kbd{color:var(--low)}
+.gl-app.gl-down .gl-asl #gl-asl-env{color:var(--work)}
+.gl-asl i{font-style:normal}
+.gl-side .gl-ses.gl-new{background:var(--sel);color:var(--hi)}
+.gl-app .gl-bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.gl-app .gl-body{display:grid;grid-template-columns:24ch 1fr 0;min-height:22em;transition:grid-template-columns .14s ease-out}
+.gl-app.gl-hist .gl-body{grid-template-columns:24ch 1fr 60ch}
+.gl-side{padding:.6em 1ch .6em 1.2ch;color:var(--mid);display:flex;flex-direction:column;gap:.05em;min-width:0;white-space:nowrap;overflow:hidden}
+.gl-side .gl-lab{color:var(--low)}
+.gl-side .gl-pr{display:flex;justify-content:space-between}
+.gl-side .gl-pr span:first-child::before{content:"▎";margin-right:.4ch}
+.gl-side .gl-p1 span:first-child::before{color:var(--accent)}.gl-side .gl-p2 span:first-child::before{color:var(--work)}.gl-side .gl-p3 span:first-child::before{color:#bb9af7}
+.gl-side .gl-ses{padding-left:2.4ch;display:flex;justify-content:space-between}
+.gl-side .gl-ses.gl-on{background:var(--sel);color:var(--hi)}
+.gl-side .gl-sr{height:1px;background:var(--line);margin:.5em 0 .35em}
+.gl-g{color:var(--idle)}.gl-g.gl-work{color:var(--work)}.gl-g.gl-need{color:var(--need);font-weight:700}.gl-g.gl-done{color:var(--done)}.gl-g.gl-err{color:var(--need)}
+.gl-stage{padding:1.1em .6ch .6ch;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:11em 15.4em;gap:1.1em .6ch}
+.gl-mp{position:relative;border:1px solid var(--line);padding:.9em 1.2ch .5em;color:var(--mid);white-space:pre;min-height:7em;display:flex;flex-direction:column}
+.gl-mp>div,.gl-mp>.gl-mc{overflow:hidden;flex:1}
+#gl-ap-out{white-space:pre-wrap}
+.gl-mp>.gl-pv,.gl-mp>.gl-bbox,.gl-mp>.gl-ov{overflow:visible;flex:none}
+#gl-edpane[hidden],.gl-ov[hidden],.gl-nav[hidden]{display:none}
+.gl-mp.gl-focus{border-color:var(--accent)}
+.gl-mp .gl-ph{font-size:13px;left:1ch;z-index:1}
+.gl-mp .gl-pf{font-size:13px;right:1ch;z-index:1}
+.gl-mp.gl-focus>.gl-ph{color:var(--hi)}
+.gl-mp>.gl-ph b{font-weight:400;padding:0 .4ch;margin:0 -.4ch}
+.gl-mp.gl-focus>.gl-ph b{background:var(--accent);color:var(--bg)}
+.gl-mp.gl-st-work:not(.gl-focus){border-color:var(--work)}.gl-mp.gl-st-work:not(.gl-focus)>.gl-ph b{background:var(--work);color:var(--bg)}
+.gl-mp.gl-st-need:not(.gl-focus){border-color:var(--need)}.gl-mp.gl-st-need:not(.gl-focus)>.gl-ph b{background:var(--need);color:var(--bg)}
+.gl-mp.gl-st-work::after,.gl-mp.gl-st-need::after{content:"";position:absolute;inset:2px;border:1px solid var(--work);pointer-events:none}
+.gl-mp.gl-st-need::after{border-color:var(--need)}
+.gl-side .gl-ses.gl-st-work>span:first-child{color:var(--work)}.gl-side .gl-ses.gl-st-need>span:first-child{color:var(--need)}
+.gl-side [hidden]{display:none}
+.gl-mp.gl-tall{grid-row:1/3}
+#gl-shpane{height:11em}
+.gl-mp.gl-res{padding-bottom:.6ch}.gl-mp.gl-res .gl-fig{overflow:hidden;height:14em;flex:none;background:none}.gl-mp.gl-res .gl-fig svg{display:block;height:100%;width:auto;margin:0 auto;background:#fff;transform-origin:86% 40%;transition:transform .14s ease-out}
+.gl-mp.gl-res .gl-nav{position:absolute;right:1.6ch;bottom:1.1em;width:72px;border:1px solid var(--line);background:var(--bg);padding:2px}
+.gl-mp.gl-res .gl-nav svg{display:block;width:100%;height:auto;background:#fff}
+.gl-mp.gl-res .gl-nav i{position:absolute;border:1px solid var(--accent);box-sizing:border-box}
+.gl-stage{position:relative}
+.gl-mp.gl-ed{position:relative}
+.gl-mp.gl-ed .gl-mm{position:absolute;right:.6ch;top:1em;display:flex;flex-direction:column;gap:3px;width:14px}
+.gl-mp.gl-ed .gl-mm i{display:block;height:2px;background:var(--line)}
+.gl-mp.gl-ed .gl-mm i:nth-child(2n){width:70%}
+.gl-app.gl-split #gl-agentpane{grid-row:1}
+.gl-app.gl-split #gl-edpane{display:flex;grid-column:1;grid-row:2}
+.gl-stage>.gl-mp{min-width:0}
+.gl-app .gl-body{position:relative}
+#gl-stage2{display:none}
+.gl-app.gl-p2 #gl-stage1{visibility:hidden}
+.gl-app.gl-p2 #gl-stage2{display:grid;position:absolute;left:24ch;top:0;right:0;bottom:0;grid-template-columns:1.25fr 1fr;grid-template-rows:auto 1fr;padding:1.1em .6ch .6ch;gap:1.1em .6ch}
+#gl-stage2 #gl-cappane{grid-row:1/3}
+.gl-mp.gl-res.gl-pdf .gl-fig{background:none;height:13em;flex:none}.gl-mp.gl-res.gl-pdf .gl-fig svg{height:100%;width:auto;margin:0 auto}
+.gl-mp.gl-res .gl-cap{display:flex;gap:1.5ch;white-space:nowrap;overflow:hidden;color:var(--low);margin-top:.3em}
+.gl-mp.gl-res .gl-cap b{color:var(--hi);font-weight:400}.gl-mp.gl-res .gl-cap .gl-sp{flex:1}
+.gl-dock{position:absolute;top:1.1em;bottom:.6ch;right:.6ch;width:calc(60ch - 1.2ch);visibility:hidden;border:1px solid var(--accent);color:var(--mid);white-space:pre;display:flex;flex-direction:column;padding:.9em 0 .5em}
+.gl-app.gl-hist .gl-dock{visibility:visible}
+.gl-dock>.gl-ph{font-size:13px;left:1ch;color:var(--hi)}.gl-dock>.gl-ph b{font-weight:400;padding:0 .4ch;margin:0 -.4ch;background:var(--accent);color:var(--bg)}
+.gl-dock>.gl-pf{font-size:13px;right:1ch}
+.gl-dock .gl-mc{flex:1;min-height:0;overflow:hidden}
+.gl-dock .gl-hr{display:flex;gap:1ch;white-space:nowrap;overflow:hidden;padding:0 1ch}
+.gl-dock .gl-hr .gl-t{flex:1;overflow:hidden;text-overflow:ellipsis;color:var(--hi)}
+.gl-dock .gl-hr.gl-on{background:var(--sel)}
+.gl-dock .gl-hd{margin-top:.6em;padding:0 17ch 0 1ch;color:var(--hi);position:relative;white-space:pre-wrap}
+.gl-dock .gl-q{color:var(--need)}
+.gl-pb{display:inline-block;width:.4ch;height:1em;vertical-align:-.15em;margin-right:.6ch}.gl-pb.gl-p1{background:var(--accent)}.gl-pb.gl-p2{background:var(--work)}.gl-pb.gl-p3{background:#bb9af7}
+.gl-dock .gl-scr{position:absolute;right:1ch;top:0;width:14ch;border:1px solid var(--line);padding:.2em .6ch;display:flex;flex-direction:column;gap:3px;font-size:11px;line-height:1.2}
+.gl-dock .gl-scr i{display:block;height:2px;background:var(--line)}.gl-dock .gl-scr i:nth-child(odd){width:60%}
+.gl-app.gl-hist #gl-stage2{right:60ch}
+.gl-app.gl-zoom #gl-edpane{position:absolute;grid-area:auto;z-index:3;background:var(--bg)}
+.gl-app.gl-zoomed .gl-mp:not(#gl-edpane){visibility:hidden}
+.gl-app.gl-zoom .gl-mp.gl-ed .gl-mm{display:none}
+.gl-ov{position:absolute;right:1.4ch;top:.9em;width:124px;height:76px;border:1px solid var(--line);background:var(--bg)}
+.gl-ov i{position:absolute;border:1px solid var(--line);font-size:8px;line-height:1;color:var(--low)}
+.gl-ov i b{position:absolute;left:3px;top:-5px;padding:0 2px;background:var(--bg);color:var(--low);font-weight:400;white-space:nowrap;max-width:90%;overflow:hidden}
+.gl-ov i.gl-w1{left:5%;top:7%;width:50%;height:42%}.gl-ov i.gl-w2{left:5%;top:53%;width:50%;height:40%}.gl-ov i.gl-w3{left:59%;top:7%;width:36%;height:42%}.gl-ov i.gl-w4{left:59%;top:53%;width:36%;height:40%}
+.gl-ov i.gl-on{border-color:var(--accent)}.gl-ov i.gl-on b{background:var(--accent);color:var(--bg)}
+.gl-ov i.gl-w1 b{color:var(--work)}
+.gl-pv{position:absolute;z-index:2;border:1px solid var(--accent);background:var(--raised);padding:.8em 1.2ch .2em;white-space:pre;line-height:1.5;color:var(--mid)}
+.gl-pv>.gl-ph{left:1.2ch;background:var(--raised);font-size:13px;color:var(--hi)}
+.gl-pv .gl-r{color:var(--low)}
+.gl-pv .gl-ft{color:var(--low);border-top:1px solid var(--line);margin-top:.3em;padding-top:.1em}
+.gl-mp .gl-u{color:var(--hi)}.gl-mp .gl-t{color:var(--done)}.gl-mp .gl-r{color:var(--low)}.gl-mp .gl-q{color:var(--need)}
+.gl-asl{display:flex;gap:2ch;align-items:center;height:1.8em;padding-right:1ch;background:var(--raised);color:var(--low);white-space:nowrap;overflow:hidden}
+.gl-asl>b{align-self:stretch;display:flex;align-items:center;padding:0 1.2ch;background:var(--accent);color:var(--bg)}
+.gl-asl .gl-sp{flex:1}
+.b-glia figcaption{font-size:13px;color:var(--low);margin-top:.6em;max-width:90ch}
+
+/* ---------- the status line: the brand in the accent, the state ---------- */
+.gl-sl{position:relative;z-index:1;height:2em;display:flex;align-items:center;gap:2.4ch;background:var(--raised);color:var(--low);
+  font-size:13.5px;white-space:nowrap;overflow:hidden;padding-right:1.5ch}
+.gl-sl .gl-brand{align-self:stretch;display:flex;align-items:center;padding:0 1.6ch;background:var(--accent);color:var(--bg);
+  font-weight:600}
+.gl-sl .gl-sp{flex:1}
+.gl-sl b{color:var(--hi);font-weight:400}
+
+@media (max-width:760px){
+  .b-glia{font-size:14px}
+  .gl-tiles{padding:2.4em 16px 2.4em}
+  .gl-row.gl-r32{grid-template-columns:1fr}
+  .gl-pane{padding:1.5em 2ch 1.3em}
+  .gl-pane.gl-specimen{min-height:20em}
+  .gl-lk{width:177px;height:50px}
+  .gl-sl .gl-wide{display:none}
+}
+@media (prefers-reduced-motion:reduce){.gl-lk .gl-c{animation:none}.gl-app,.gl-app *{transition:none}}

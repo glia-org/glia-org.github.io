@@ -1,0 +1,50 @@
+/* Tanycyte's band: Tanycyte has no page and no drawn brief; its face draws the brief in Glia's look (tanycyte, commit
+   f03dc5f, face/README.md and face/src/theme.rs): Glia's mono, Cascadia Code, 13 px on 16 px rows for data, labels and
+   keys; the system's face for prose; hairlines; a top line with the date and the state at the right; small mono
+   capitals over each section; the key legend along the foot. By day Tokyo Night Day's ground, by night Tokyo Night's
+   darkest, as the system's appearance is; the screenshot is the face's own. Classes prefixed ty-. Cascadia Code: the
+   file Glia's band serves (fonts/glia/, OFL). */
+@font-face{font-family:"Cascadia Code";src:url(../fonts/glia/CascadiaCode.woff2) format("woff2");font-weight:200 700;
+  font-style:normal;font-display:swap}
+.b-tany{
+  --bg:#e1e2e7;--raised:#d5d6db;--hi:#1a1b26;--mid:#3b3f52;--low:#585c72;--line:#c4c6d0;--accent:#2e5bb8;
+  --mono:"Cascadia Code",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --prose:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",system-ui,sans-serif;
+  background:var(--bg);color:var(--mid);font:16px/1.55 var(--prose);-webkit-font-smoothing:antialiased}
+@media (prefers-color-scheme:dark){.b-tany{
+  --bg:#16161e;--raised:#1f2030;--hi:#c0caf5;--mid:#a9b1d6;--low:#7e84a2;--line:#2f3346;--accent:#7aa2f7}}
+.b-tany a{color:var(--accent);text-decoration:none}
+.b-tany a:hover{text-decoration:underline;text-underline-offset:.2em}
+.b-tany code,.b-tany kbd{font:13px/16px var(--mono)}
+.b-tany code{color:var(--hi)}
+
+.ty-wrap{max-width:1200px;margin:0 auto;padding:44px 40px 0}
+/* the top line: the lockup at the left (Tanycyte's face shows the date there), the state at the right, a hairline */
+.ty-top{display:flex;align-items:center;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-bottom:16px;
+  border-bottom:1px solid var(--line)}
+.ty-top h2{margin:0;font-weight:400}
+.ty-top h2 img{display:block;width:249px;height:40px}
+.ty-st{font:13px/16px var(--mono);color:var(--low)}
+.ty-st b{font-weight:600;color:var(--hi)}
+.ty-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 56px;align-items:start;padding:30px 0 40px}
+/* a section's head: small mono capitals, as LIBRARY on the face */
+.ty-k{display:block;font:600 12px/16px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--hi)}
+.ty-ld{font-size:20px;line-height:1.45;color:var(--hi);margin-top:10px;max-width:30em}
+.ty-parts{margin:26px 0 0;display:flex;flex-direction:column;gap:18px;max-width:34em}
+.ty-parts dd{margin:4px 0 0}
+.ty-vis img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+.ty-vis figcaption{margin-top:10px;font:13px/1.5 var(--prose);color:var(--low)}
+/* the key legend, as along the foot of the face: each key in a small box */
+.ty-keys{display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:10px 0 36px;border-top:1px solid var(--line);
+  font:13px/16px var(--mono);color:var(--low)}
+.ty-keys span{display:inline-flex;align-items:center;gap:6px}
+.ty-keys kbd{display:inline-block;min-width:16px;padding:1px 4px;text-align:center;color:var(--hi);background:var(--raised);
+  border:1px solid var(--line);border-radius:3px}
+
+@media (max-width:960px){.ty-grid{grid-template-columns:minmax(0,1fr)}.ty-vis{max-width:720px}}
+@media (max-width:760px){
+  .ty-wrap{padding:36px 16px 0}
+  .ty-top h2 img{width:199px;height:32px}
+  .ty-grid{padding:24px 0 32px}
+  .ty-ld{font-size:18px}
+}

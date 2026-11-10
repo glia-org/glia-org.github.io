@@ -1,6 +1,6 @@
 /* glia-org.github.io: one page, the ground neutral and light or dark as the system is (G1). The hero is a tissue that
-   is a diagram, inline SVG with the keyframes at the end of this file; below it each project is a full-width band in
-   that project's own palette, mark and type, with the page's content column inside. Literata for prose (OFL,
+   is a diagram, inline SVG with the keyframes at the end of this file; below it each project is a full-width band, a
+   miniature of that project's own page, styled by assets/bands/<project>.css. Literata for prose (OFL,
    fonts/OFL.txt, a subset: see README.md); code, keys and the drawing's small print in the system's monospaced face,
    none downloaded. Rules for changing the page: README.md. */
 @font-face{font-family:Literata;src:url(fonts/literata-latin.woff2) format("woff2");font-weight:200 900;font-style:normal;
@@ -46,66 +46,10 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
 .pz{display:inline-flex;gap:8px;align-items:center;cursor:pointer}
 .pz input{margin:0;width:15px;height:15px;accent-color:var(--hi)}
 
-/* the projects: one band each, in the project's palette; text left, the visual right */
-.band{--b-bg:var(--bg);--b-hi:var(--hi);--b-cp:var(--cp);--b-mu:var(--mu);--b-ln:var(--ln);--b-ac:var(--hi);
-  background:var(--b-bg);color:var(--b-cp);padding:76px 0 80px;box-shadow:inset 0 1px var(--b-ln)}
+/* the projects: one band each, a miniature of the project's own page in its own palette, type and hero, styled by
+   assets/bands/<project>.css; a band off screen is not laid out or painted, so its fonts and pictures wait */
 .projects{margin-top:56px}
-.band>.wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:36px 64px;align-items:center}
-.band h2{display:flex;align-items:center;gap:14px;font-size:34px;line-height:1.15;font-weight:400;color:var(--b-hi);
-  letter-spacing:-.005em}
-.band h2 svg,.band h2 img{flex:none;display:block}
-.band .mk{width:40px;height:40px}
-.band .ld{font-size:20px;line-height:1.5;color:var(--b-hi);margin-top:18px;max-width:30em}
-.band ul{margin-top:18px;max-width:34em}
-.band li{padding-left:1.2em;position:relative}
-.band li+li{margin-top:8px}
-.band li::before{content:"–";position:absolute;left:0;color:var(--b-mu)}
-.band .st{margin-top:24px;font-size:15px;color:var(--b-mu)}
-.band a{color:var(--b-ac);text-decoration-color:color-mix(in srgb,var(--b-ac) 45%,transparent)}
-.band a:hover{text-decoration-color:var(--b-ac)}
-.band code{color:var(--b-hi);white-space:nowrap}
-.band kbd{color:var(--b-hi)}
-.vis figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--b-mu)}
-
-/* Glia: Tokyo Night, dark only, as the app and its page; the pixel astrocyte with its accent cell blinking like the
-   cursor; the state line in mono, like the app's status line */
-.b-glia{color-scheme:dark;--b-bg:#1a1b26;--b-hi:#c0caf5;--b-cp:#a7b0d6;--b-mu:#7e84a2;--b-ln:#44475a;--b-ac:#7aa2f7}
-.b-glia h2{font-weight:500}
-.b-glia .mk{width:44px;height:44px}
-.b-glia .mk .w{fill:var(--b-hi)}.b-glia .mk .c{fill:var(--b-ac);animation:bk 1.06s step-end infinite}
-.b-glia .st{font-family:var(--smono);font-size:13.5px;border-top:1px solid var(--b-ln);padding-top:10px}
-
-/* Tanycyte: Glia's look, by the system's light or dark; its lockup; the face's small mono capitals */
-.b-tany{--b-bg:#e1e2e7;--b-hi:#1a1b26;--b-cp:#3b3f52;--b-mu:#585c72;--b-ln:#c4c6d0;--b-ac:#2e5bb8}
-@media (prefers-color-scheme:dark){.b-tany{--b-bg:#16161e;--b-hi:#c0caf5;--b-cp:#a9b1d6;--b-mu:#7e84a2;--b-ln:#2f3346;
-  --b-ac:#7aa2f7}}
-.b-tany h2 img{width:249px;height:40px}
-.b-tany li{padding-left:0}.b-tany li::before{content:none}
-.b-tany .k{display:block;font:600 12px/1.6 var(--smono);letter-spacing:.06em;text-transform:uppercase;color:var(--b-hi)}
-.b-tany .st{font-family:var(--smono);font-size:13.5px}
-.b-tany .vis img{border:1px solid var(--b-ln);border-radius:8px}
-
-/* Importin: the violet dark of its page, dark only; the eight facets in the accent */
-.b-importin{color-scheme:dark;--b-bg:#13131b;--b-hi:#e9e7f2;--b-cp:#b2afc4;--b-mu:#8a879c;--b-ln:#2d2c3a;--b-ac:#97a2ff}
-.b-importin .mk path{fill:var(--b-ac);stroke:var(--b-ac);stroke-width:1.6;stroke-linejoin:round}
-.b-importin code{background:#1c1b26;padding:.08em .32em;border-radius:4px}
-
-/* Lemna: Still's paper by day and its warm dark by night; the line and the caret */
-.b-lemna{--b-bg:#f3f0e8;--b-hi:#46433d;--b-cp:#6b675f;--b-mu:#6b675f;--b-ln:#d9d4c8;--b-ac:#577446}
-@media (prefers-color-scheme:dark){.b-lemna{--b-bg:#1c1b18;--b-hi:#e2daca;--b-cp:#a69d8e;--b-mu:#a69d8e;--b-ln:#34312c;
-  --b-ac:#a2b88e}}
-.b-lemna .mk path{fill:var(--b-hi)}.b-lemna .mk rect{fill:var(--b-ac)}
-.b-lemna a{color:var(--b-hi);text-decoration-color:var(--b-ln)}
-.b-lemna a:hover{text-decoration-color:var(--b-hi)}
-.b-lemna .vis img{border-radius:12px}
-
-/* Moin Journal: Abendlicht, its paper by day and its ink-blue by night; the two pennants and the fan of pages */
-.b-moin{--b-bg:#f7f0ee;--b-hi:#192239;--b-cp:#5c6371;--b-mu:#5c6371;--b-ln:#dcd2cf;--b-ac:#a04967}
-@media (prefers-color-scheme:dark){.b-moin{--b-bg:#192239;--b-hi:#e6dddb;--b-cp:#979da9;--b-mu:#979da9;--b-ln:#343d50;
-  --b-ac:#cc7893}}
-.mm-p{fill:var(--b-cp)}.mm-l{fill:var(--b-hi)}.mm-r{fill:var(--b-ac)}
-.b-moin .big{display:block;width:min(100%,300px);height:auto;margin:0 auto}
-.b-moin .vis figcaption{text-align:center}
+.band{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 
 /* how these pages are made (R1), the foot */
 .rules{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 56px;padding-top:64px}
@@ -115,8 +59,6 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
   background:linear-gradient(var(--ln),var(--ln)) 40px 0/calc(100% - 80px) 1px no-repeat}
 .foot p+p{margin-top:4px}
 
-/* narrower than about 960 px the text column would fall under 300 px: one column, the visual under the text */
-@media (max-width:960px){.band>.wrap{grid-template-columns:minmax(0,1fr);gap:32px}.band .vis{max-width:720px}}
 @media (max-width:760px){
   .wrap{padding-left:16px;padding-right:16px}
   .top{padding-top:20px;font-size:19px}
@@ -127,16 +69,10 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
   .hero .hp{display:block}
   .hero figcaption{padding:0 16px}
   .projects{margin-top:40px}
-  .band{padding:48px 0 52px}
-  .band>.wrap{grid-template-columns:minmax(0,1fr);gap:28px}
-  .band h2{font-size:28px}
-  .band .ld{font-size:18px}
-  .b-moin .big{width:200px}
   .rules{grid-template-columns:minmax(0,1fr);gap:10px;padding-top:44px}
   .rules h2{font-size:24px}
   .foot{margin-top:44px;background-position:16px 0;background-size:calc(100% - 32px) 1px}
 }
-@media (prefers-reduced-motion:reduce){.b-glia .mk .c{animation:none}}
 
 /* ---------- the hero's drawing: shared, the loop's moments (data-step, set by site.js), then the two paints ---------- */
 .rt{display:block;width:100%;height:auto}

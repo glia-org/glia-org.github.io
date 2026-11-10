@@ -1,0 +1,89 @@
+/* Moin Journal's band: Moin Journal has no page yet; the band is drawn from its brand (moin-journal, commit 2de4f05,
+   assets/brand/): Abendlicht, its paper and ink by day and its ink-blue by night as the system's appearance is, the
+   accent for the right pennant and what is new; its mark (two pennants and the fan of pages between them); Literata,
+   its editor's face, for the prose; the system's face for the folder, as the Mac shows it. The drawing files one
+   entry into the store's entries folder on an 8 s loop, CSS only: a folder per entry, named by its ULID (its first ten
+   characters are the entry's time), with its Markdown file, current.md, beside the revision it is made from (the
+   design spec's store layout, section 5.1). The box under it pauses it; under reduced motion it stands at the entry
+   just filed and the box goes. Classes and keyframes prefixed mj-. */
+.b-moin{
+  --paper:#f7f0ee;--surface:#eee6e3;--ink:#192239;--ink2:#5c6371;--rule:#dcd2cf;--accent:#a04967;--sel:#f5deb9;
+  --serif:Literata,Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --ui:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,Menlo,"SF Mono",SFMono-Regular,Consolas,monospace;
+  background:var(--paper);color:var(--ink2);font:17px/1.6 var(--serif)}
+@media (prefers-color-scheme:dark){.b-moin{
+  --paper:#192239;--surface:#212a3e;--ink:#e6dddb;--ink2:#979da9;--rule:#343d50;--accent:#cc7893;--sel:#594324}}
+.b-moin a{color:var(--accent)}
+.b-moin code{font:.84em var(--mono);color:var(--ink);white-space:nowrap}
+
+.mj-wrap{max-width:1200px;margin:0 auto;padding:80px 40px 84px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  gap:40px 72px;align-items:center}
+.mj-name{display:flex;align-items:center;gap:16px;margin:0;font-size:34px;line-height:1.15;font-weight:400;color:var(--ink);
+  letter-spacing:-.005em}
+.mj-mk{flex:none;display:block;width:48px;height:48px}
+.mj-p{fill:var(--ink2)}.mj-l{fill:var(--ink)}.mj-r{fill:var(--accent)}
+.mj-ld{font-size:21px;line-height:1.5;color:var(--ink);margin-top:20px;max-width:28em}
+.mj-facts{margin-top:22px;max-width:34em;border-top:1px solid var(--rule)}
+.mj-facts li{padding:10px 0;border-bottom:1px solid var(--rule)}
+.mj-st{margin-top:20px;font:14px/1.5 var(--ui);color:var(--ink2);letter-spacing:.01em}
+
+/* the drawing: an entry above the folder; the folder as the Mac lists it */
+.mj-scene{position:relative;padding-top:150px;font:14px/1.45 var(--ui);color:var(--ink)}
+.mj-page{position:absolute;left:50%;top:0;width:280px;margin-left:-140px;padding:16px 20px 18px;background:var(--paper);
+  border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 0 var(--rule),0 6px 18px rgba(25,34,57,.08);
+  transform-origin:50% 0;opacity:0}
+.mj-page b{display:block;font:500 16px/1.3 var(--serif);color:var(--ink);margin-bottom:10px}
+.mj-page i{display:block;height:6px;border-radius:3px;background:var(--rule);margin-top:9px}
+.mj-page i:nth-child(3){width:86%}.mj-page i:nth-child(4){width:62%}
+.mj-win{background:var(--surface);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.mj-path{padding:9px 14px;border-bottom:1px solid var(--rule);font:12.5px/1.4 var(--mono);color:var(--ink2);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+/* the list keeps its height: the new row pushes the oldest out of view, as a Finder window does */
+.mj-rows{background:var(--paper);height:12.6em;overflow:hidden}
+.mj-rows li{display:grid;grid-template-columns:auto 1fr auto;gap:0 14px;align-items:baseline;padding:7px 14px;
+  border-bottom:1px solid var(--rule)}
+.mj-rows li:last-child{border-bottom:0}
+.mj-rows li::before{content:"";width:13px;height:10px;align-self:center;border-radius:2px;background:var(--ink2);opacity:.35}
+.mj-id{font:13px/1.45 var(--mono);color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mj-d{color:var(--ink2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.mj-files{grid-column:2/4;font:12.5px/1.6 var(--mono);color:var(--ink2)}
+/* the new entry, as the still shows it: filed, selected */
+.mj-new{background:var(--sel)}
+.mj-new::before{background:var(--accent)!important;opacity:1!important}
+.mj-vis figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:8px 28px;margin-top:14px;
+  font:14px/1.5 var(--ui);color:var(--ink2)}
+.mj-vis figcaption p{max-width:40em}
+.mj-pz{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;cursor:pointer}
+.mj-pz input{margin:0;width:15px;height:15px;accent-color:var(--accent)}
+
+/* the loop, 8 s: the page shows (0.6 s), rests, is carried down into the folder and gone (2.4 to 3.9 s); its row opens
+   at the top, selected, its files under it; the selection holds, then the row closes as the loop begins again */
+.mj-page{animation:mj-page 8s cubic-bezier(.45,0,.55,1) infinite both}
+.mj-new{animation:mj-new 8s ease-out infinite both}
+.mj-new>*{animation:mj-in 8s ease-out infinite both}
+@keyframes mj-page{0%{opacity:0;transform:translateY(-10px)}8%{opacity:1;transform:none}30%{opacity:1;transform:none}
+  46%{opacity:.9;transform:translateY(150px) scale(.42,.18)}49%,100%{opacity:0;transform:translateY(156px) scale(.4,.12)}}
+@keyframes mj-new{0%,44%{max-height:0;padding-top:0;padding-bottom:0;background:var(--sel)}52%,80%{max-height:5em;padding-top:7px;
+  padding-bottom:7px;background:var(--sel)}92%{max-height:5em;padding-top:7px;padding-bottom:7px;background:transparent}
+  97%{max-height:5em;padding-top:7px;padding-bottom:7px;background:transparent}100%{max-height:0;padding-top:0;padding-bottom:0;
+  background:transparent}}
+@keyframes mj-in{0%,46%{opacity:0}54%,95%{opacity:1}100%{opacity:0}}
+.mj-new{overflow:hidden}
+.mj-vis:has(.mj-pz input:checked) *{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){
+  .mj-page,.mj-new,.mj-new>*{animation:none}
+  .mj-pz{display:none}
+}
+
+@media (max-width:960px){.mj-wrap{grid-template-columns:minmax(0,1fr);gap:40px}.mj-vis{max-width:640px}}
+@media (max-width:760px){
+  .mj-wrap{padding:48px 16px 52px}
+  .mj-name{font-size:28px}
+  .mj-mk{width:40px;height:40px}
+  .mj-ld{font-size:18px}
+  .mj-scene{padding-top:140px}
+  .mj-page{width:240px;margin-left:-120px}
+  .mj-d{font-size:13px}
+  .mj-vis figcaption{flex-direction:column;align-items:flex-start}
+}

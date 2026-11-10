@@ -1,0 +1,149 @@
+/* Lemna's band: a miniature of Lemna's page (lemna, commit 2a325d6, site/): Still's paper by day and its warm dark by
+   night as the system's appearance is, Literata, the stacked header, and its demo, live (bands/lemna.js): the box over
+   a dimmed app, Code on the dim, the line gliding past a fixed caret, the loop, and the box to type into. Classes and
+   ids of Lemna's page are prefixed lm-; nothing here reaches outside the band. No sound: the page's sound and bed
+   switches are left out. Without scripts and under reduced motion the band shows the stills (img/lemna/), as Lemna's
+   page does without scripts.
+   Type: Literata. The band's face is "Lemna Literata": the page's subset (fonts/literata-latin.woff2) for the characters
+   it holds, and Lemna's own Latin file (fonts/lemna/literata-latin.woff2, OFL, fonts/lemna/OFL.txt) for the other
+   Latin characters it holds, fetched only when one is typed into the box (the two faces' unicode-ranges do not
+   overlap, so the subset is the family's first face); keys and the line's marks in Menlo or the
+   system's monospaced face, none downloaded. */
+@font-face{font-family:"Lemna Literata";src:url(../fonts/lemna/literata-latin.woff2) format("woff2");font-weight:200 900;
+  font-style:normal;font-display:swap;unicode-range:U+00A1-00B6,U+00B8-00D6,U+00D8-00E8,U+00EA-024F,U+0259,U+02BB-02BC,U+02C6,
+  U+02DA,U+02DC,U+0300-036F,U+1E00-1EFF,U+2000-2012,U+2015-2017,U+201E-2025,U+2027-206F,U+2074,U+20AC,U+20BA,U+20BD,U+2113,
+  U+2122,U+2190-2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Lemna Literata";src:url(../fonts/literata-latin.woff2) format("woff2");font-weight:200 900;
+  font-style:normal;font-display:swap;unicode-range:U+0020-007E,U+00A0,U+00B7,U+00D7,U+00E9,U+2013-2014,U+2018-201D,U+2026}
+.b-lemna{
+  --paper:#f3f0e8;--text:#46433d;--copy:#6b675f;--mark:#86817a;--accent:#577446;--line:#d9d4c8;
+  --dim:rgba(211,216,206,.74);--ink:#3f4a3c;
+  /* the app under the dim: a light window on a light desktop by day */
+  --desk:#c9ccc5;--win:#fbfbf9;--win-edge:#d9d9d4;--win-bar:#efefec;--win-dot:#d0d0cb;--win-ph:#e0e0dc;--win-ph-t:#cdcdc8;
+  --win-text:#2e2e2c;
+  /* the loop's tape scrub: the on-screen display in the ink with a paper edge, the tracking bands, the smear's colour */
+  --osd:rgba(63,74,60,.82);--osd-edge:rgba(243,240,232,.75);--trk:rgba(63,74,60,.05);--trk-hi:rgba(255,253,246,.5);
+  --smear:70,67,61;--cap-side:#24221f;
+  --serif:"Lemna Literata",Charter,"Iowan Old Style",Georgia,serif;
+  --mono:Menlo,ui-monospace,"SF Mono",SFMono-Regular,Consolas,"DejaVu Sans Mono",monospace;
+  --r:12px;
+  background:var(--paper);color:var(--copy);font:17px/1.6 var(--serif)}
+@media (prefers-color-scheme:dark){.b-lemna{
+  --paper:#1c1b18;--text:#e2daca;--copy:#a69d8e;--mark:#8c8476;--accent:#a2b88e;--line:#34312c;
+  --dim:rgba(15,20,18,.62);--ink:#c9d3c4;
+  --desk:#1d1e20;--win:#2b2c2f;--win-edge:#3b3c40;--win-bar:#323336;--win-dot:#55565a;--win-ph:#45464a;--win-ph-t:#55565a;
+  --win-text:#d4d5d8;
+  --osd:rgba(226,218,202,.86);--osd-edge:rgba(15,20,18,.8);--trk:rgba(226,218,202,.035);--trk-hi:rgba(226,218,202,.13);
+  --smear:226,218,202;--cap-side:#8c8476}}
+.b-lemna a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line);text-decoration-thickness:1px;
+  text-underline-offset:.2em}
+.b-lemna a:hover{text-decoration-color:var(--text)}
+.b-lemna :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.b-lemna kbd{font:.84em/1 var(--mono);color:var(--text)}
+
+.lm-wrap{max-width:1180px;margin:0 auto;padding:64px 40px 72px}
+.lm-top{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+.lm-brand{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;font-size:21px;line-height:1.6;font-weight:400;
+  color:var(--text);letter-spacing:.01em}
+.lm-brand svg{display:block}
+.lm-brand path{fill:currentColor}
+.lm-brand rect{fill:var(--accent)}
+.lm-h{font-size:36px;line-height:1.22;font-weight:400;color:var(--text);max-width:30ch;text-wrap:balance;letter-spacing:-.005em}
+.lm-lead{font-size:19px;max-width:60ch}
+.lm-get{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:14px}
+.lm-btn{display:inline-block;background:var(--text);color:var(--paper);border-radius:10px;padding:6px 18px;
+  font-size:16px;white-space:nowrap}
+.b-lemna .lm-btn{color:var(--paper);text-decoration:none}
+.lm-btn:hover{background:var(--copy)}
+
+/* the demo: a 1100 × 620 px piece of a screen at actual size on a 2× display (1 px = 1 pt), scaled down to fit. The
+   still shows without scripts (the <noscript> style in index.html) and under reduced motion; the live stage otherwise */
+.lm-still{display:none}
+@media (prefers-reduced-motion:reduce){.lm-still{display:block}.lm-live{display:none}}
+.lm-still img{display:block;max-width:100%;height:auto;border-radius:var(--r);box-shadow:0 0 0 1px var(--line)}
+.lm-fit{position:relative;width:100%;max-width:1100px;aspect-ratio:1100/620;overflow:hidden;border-radius:var(--r);
+  box-shadow:0 0 0 1px var(--line)}
+.lm-stage{position:absolute;left:0;top:0;width:1100px;height:620px;transform-origin:0 0;background:var(--desk);
+  overflow:hidden;cursor:text}
+.lm-stage:focus-visible{outline-offset:-3px}
+.lm-fit:has(>.lm-stage:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+@supports selector(:has(*)){.lm-stage:focus-visible{outline:none}}
+.lm-win{position:absolute;left:170px;top:36px;width:760px;height:548px;background:var(--win);border:1px solid var(--win-edge);
+  border-radius:10px;overflow:hidden}
+.lm-win .lm-bar{height:30px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--win-bar);
+  border-bottom:1px solid var(--win-edge)}
+.lm-win .lm-bar i{width:11px;height:11px;border-radius:50%;background:var(--win-dot)}
+.lm-doc{display:flex;flex-direction:column;gap:14px;padding:28px 40px}
+.lm-doc b{display:block;height:10px;border-radius:2px;background:var(--win-ph)}
+.lm-doc b.lm-t{height:14px;background:var(--win-ph-t);margin-bottom:8px}
+.lm-doc .lm-gap{height:4px}
+.lm-cur{min-height:24px;margin-top:-7px;font:15px/24px system-ui,-apple-system,"Helvetica Neue",sans-serif;color:var(--win-text);
+  max-width:680px}
+#lm-pasted{margin-top:8px;max-height:256px;overflow:hidden}
+#lm-pasted p{margin:0 0 24px}
+#lm-pasted p:last-child{margin:0}
+.lm-ic{display:inline-block;width:2px;height:18px;margin-left:1px;vertical-align:-4px;background:var(--win-text)}
+.lm-dim{position:absolute;left:0;top:0;width:1100px;height:620px;background:var(--dim);visibility:hidden;opacity:0}
+.lm-dim canvas{position:absolute;left:0;top:0;width:1100px;height:620px}
+.lm-ring{position:absolute;left:0;top:0;width:1100px;height:620px;pointer-events:none}
+.lm-ring i{position:absolute;border:0 solid var(--ink);opacity:0}
+.lm-hint{position:absolute;left:0;right:0;top:520px;display:flex;justify-content:center;gap:24px;opacity:0;pointer-events:none;
+  color:var(--text);font:15px/1.4 var(--serif)}
+.lm-hint kbd{display:inline-block;font-size:15px;line-height:1.4;background:var(--paper);border:1px solid var(--line);
+  border-radius:10px;padding:6px 14px}
+.lm-hint span{align-self:center}
+.lm-caps{position:absolute;left:0;right:0;top:196px;display:flex;justify-content:center;gap:18px;opacity:0;pointer-events:none}
+.lm-caps kbd{display:flex;align-items:center;justify-content:center;min-width:92px;height:92px;padding:0 22px;border-radius:16px;
+  background:var(--text);color:var(--paper);font:400 52px/1 var(--mono);box-shadow:0 6px 0 var(--cap-side);
+  transition:transform .12s cubic-bezier(.23,1,.32,1),box-shadow .12s cubic-bezier(.23,1,.32,1)}
+.lm-caps kbd.lm-word{min-width:236px;font:400 34px/1 var(--serif);letter-spacing:.01em}
+.lm-caps kbd.lm-ctl{padding-top:18px}
+.lm-caps kbd.lm-down{transform:translateY(5px);box-shadow:0 1px 0 var(--cap-side);transition-duration:.06s}
+.lm-box{position:absolute;left:96px;top:353px;width:907px;height:120px;background:var(--paper);border:1px solid var(--line);
+  border-radius:16px;font:400 30px/1 var(--serif);color:var(--text);overflow:hidden;visibility:hidden;opacity:0;
+  font-kerning:none;font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"dlig" 0,"calt" 0,"kern" 0}
+@supports (corner-shape:superellipse(1.5)){.lm-box{border-radius:22px;corner-shape:superellipse(1.5)}}
+.lm-box.lm-up,.lm-dim.lm-up{visibility:visible;opacity:1}
+.lm-box:focus-within{outline:2px solid var(--accent);outline-offset:3px}
+.lm-ll-b,.lm-ll-a{position:absolute;top:0;bottom:0;display:flex;align-items:center;overflow:hidden;white-space:pre}
+.lm-ll-b{left:0;right:40%;justify-content:flex-end;-webkit-mask-image:linear-gradient(to right,transparent 41.667%,#000 75%);
+  mask-image:linear-gradient(to right,transparent 41.667%,#000 75%)}
+.lm-ll-a{left:calc(60% + 2px);right:5%;-webkit-mask-image:linear-gradient(to right,#000 57.143%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 57.143%,transparent 100%)}
+.lm-ll-b>span,.lm-ll-a>span{flex:none;display:block}
+.lm-ll-c{position:absolute;left:60%;top:50%;width:2px;height:1.2em;margin-top:-.6em;background:var(--accent);border-radius:1px}
+.lm-box .lm-p{color:var(--mark)}
+.lm-box .lm-p b{font:inherit;font-family:var(--mono);font-weight:400}
+.lm-box .lm-new{animation:lm-fadein 80ms cubic-bezier(.23,1,.32,1)}
+.lm-box .lm-p.lm-new{animation-duration:200ms}
+@keyframes lm-fadein{from{opacity:0}}
+.lm-ll-in{position:absolute;left:0;top:0;width:100%;height:100%;opacity:0;border:0;margin:0;padding:0;font-size:16px;
+  color:transparent;background:transparent;caret-color:transparent;cursor:text}
+.lm-vhs{position:absolute;left:0;top:0;width:1100px;height:620px;pointer-events:none;opacity:var(--ff,0);overflow:hidden}
+.lm-osd{position:absolute;inset:0}
+.lm-osd canvas{position:absolute;image-rendering:pixelated;image-rendering:crisp-edges}
+.lm-osd-ff{left:36px;top:30px;width:70px;height:60px}
+.lm-osd-n{right:36px;top:40px;width:180px;height:40px}
+.lm-trk{position:absolute;left:0;top:0;width:100%;height:44px;transform:translateY(-60px);
+  background:repeating-linear-gradient(to bottom,transparent 0 3px,var(--trk) 3px 4px),
+    linear-gradient(to bottom,transparent,var(--trk) 25%,var(--trk-hi) 50%,var(--trk) 75%,transparent);
+  -webkit-backdrop-filter:blur(1.4px);backdrop-filter:blur(1.4px)}
+.lm-trk+.lm-trk{height:16px}
+.lm-stage.lm-ff .lm-trk{animation:lm-trk 1.9s linear infinite}
+.lm-stage.lm-ff .lm-trk+.lm-trk{animation-duration:2.7s;animation-delay:-1.6s}
+@keyframes lm-trk{from{transform:translateY(-60px)}to{transform:translateY(660px)}}
+.lm-stage.lm-ff .lm-box .lm-ll-b,.lm-stage.lm-ff .lm-box .lm-ll-a{translate:var(--jit,0px) 0}
+.lm-stage.lm-ff .lm-box .lm-ll-b>span,.lm-stage.lm-ff .lm-box .lm-ll-a>span{
+  text-shadow:calc(var(--ff,0)*3px) 0 0 rgba(var(--smear),calc(var(--ff,0)*.2)),
+    calc(var(--ff,0)*7px) 0 1px rgba(var(--smear),calc(var(--ff,0)*.08))}
+.lm-under{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 20px;max-width:1100px;
+  margin-top:12px;font-size:14px}
+.lm-under p{max-width:none}
+.lm-facts{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:6px;font-size:16px;max-width:76ch}
+
+@media (max-width:760px){
+  .lm-wrap{padding:44px 16px 52px}
+  .lm-h{font-size:27px}
+  .lm-lead{font-size:17px}
+  .lm-facts{font-size:15px}
+}

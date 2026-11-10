@@ -10,7 +10,14 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/bands/glia.css">
+<link rel="stylesheet" href="assets/bands/tanycyte.css">
+<link rel="stylesheet" href="assets/bands/importin.css">
+<link rel="stylesheet" href="assets/bands/lemna.css">
+<link rel="stylesheet" href="assets/bands/moin.css">
+<noscript><style>.gl-still,.lm-still,.gl-specimen .gl-nogl{display:block}.gl-app,.lm-live{display:none}</style></noscript>
 <script src="assets/site.js" defer></script>
+<script src="assets/bands/load.js" defer></script>
 </head>
 <body>
 <!-- The org page of glia-org: concept A (the hero drawing, a band per project, the rules, the foot), G1, M1, S1, R1.
@@ -64,84 +71,291 @@
 
 <div class="projects">
 
-<section class="band b-glia" id="glia">
-<div class="wrap">
-<div class="txt">
-<h2><svg class="mk" viewBox="0 0 22 22" shape-rendering="crispEdges" aria-hidden="true"><path class="w" d="M1 8h1v1h-1zM3 9h1v1h-1zM3 19h1v1h-1zM4 2h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM5 17h1v1h-1zM6 1h1v1h-1zM6 4h1v1h-1zM6 9h1v1h-1zM6 10h1v1h-1zM6 15h1v1h-1zM6 16h1v1h-1zM7 3h1v1h-1zM7 5h1v1h-1zM7 9h1v1h-1zM7 10h1v1h-1zM7 13h1v1h-1zM7 14h1v1h-1zM8 4h1v1h-1zM8 5h1v1h-1zM8 6h1v1h-1zM8 7h1v1h-1zM8 10h1v1h-1zM8 12h1v1h-1zM8 13h1v1h-1zM9 6h1v1h-1zM9 7h1v1h-1zM9 9h1v1h-1zM9 10h1v1h-1zM9 11h1v1h-1zM9 18h1v1h-1zM10 6h1v1h-1zM10 7h1v1h-1zM10 8h1v1h-1zM10 9h1v1h-1zM10 11h1v1h-1zM10 12h1v1h-1zM10 13h1v1h-1zM10 14h1v1h-1zM10 16h1v1h-1zM11 3h1v1h-1zM11 4h1v1h-1zM11 5h1v1h-1zM11 6h1v1h-1zM11 7h1v1h-1zM11 9h1v1h-1zM11 10h1v1h-1zM11 11h1v1h-1zM11 13h1v1h-1zM11 14h1v1h-1zM11 15h1v1h-1zM11 16h1v1h-1zM11 17h1v1h-1zM12 1h1v1h-1zM12 4h1v1h-1zM12 10h1v1h-1zM12 12h1v1h-1zM12 13h1v1h-1zM12 19h1v1h-1zM13 10h1v1h-1zM13 11h1v1h-1zM13 12h1v1h-1zM13 13h1v1h-1zM14 2h1v1h-1zM14 10h1v1h-1zM14 11h1v1h-1zM14 14h1v1h-1zM15 10h1v1h-1zM15 15h1v1h-1zM16 10h1v1h-1zM16 16h1v1h-1zM17 10h1v1h-1zM17 17h1v1h-1zM18 10h1v1h-1zM19 19h1v1h-1zM20 10h1v1h-1z"/><path class="c" d="M10 10h1v1h-1z"/></svg>Glia</h2>
-<p class="ld">A native macOS app for terminals and coding agents on remote machines.</p>
-<ul>
+<!-- Glia: a miniature of Glia's page, glia.github.io at commit 1e02732 (its committed index.html, assets/site.css and
+ assets/site.js): its look, its section rhythm and its hero, the astrocyte field (WebGL 2) behind the panes and the drawn
+ window that plays its task; classes and ids prefixed gl-. Styles: assets/bands/glia.css; the field and the playback:
+ assets/bands/glia.js. Without WebGL 2 or scripts: assets/img/glia/window-drawing.png, the window at rest. -->
+<section class="band b-glia" id="glia" data-js="assets/bands/glia.js" data-face="Cascadia Code">
+<div class="gl-tiles">
+<div class="gl-row gl-r32">
+<div class="gl-pane gl-focus"><span class="gl-ph"><i>01</i>glia</span>
+<h2><svg class="gl-lk" viewBox="0 0 177 50" role="img" aria-label="Glia"><g transform="translate(0 4) scale(2)" shape-rendering="crispEdges"><path class="gl-w" d="M1 8h1v1h-1zM3 9h1v1h-1zM3 19h1v1h-1zM4 2h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM5 17h1v1h-1zM6 1h1v1h-1zM6 4h1v1h-1zM6 9h1v1h-1zM6 10h1v1h-1zM6 15h1v1h-1zM6 16h1v1h-1zM7 3h1v1h-1zM7 5h1v1h-1zM7 9h1v1h-1zM7 10h1v1h-1zM7 13h1v1h-1zM7 14h1v1h-1zM8 4h1v1h-1zM8 5h1v1h-1zM8 6h1v1h-1zM8 7h1v1h-1zM8 10h1v1h-1zM8 12h1v1h-1zM8 13h1v1h-1zM9 6h1v1h-1zM9 7h1v1h-1zM9 9h1v1h-1zM9 10h1v1h-1zM9 11h1v1h-1zM9 18h1v1h-1zM10 6h1v1h-1zM10 7h1v1h-1zM10 8h1v1h-1zM10 9h1v1h-1zM10 11h1v1h-1zM10 12h1v1h-1zM10 13h1v1h-1zM10 14h1v1h-1zM10 16h1v1h-1zM11 3h1v1h-1zM11 4h1v1h-1zM11 5h1v1h-1zM11 6h1v1h-1zM11 7h1v1h-1zM11 9h1v1h-1zM11 10h1v1h-1zM11 11h1v1h-1zM11 13h1v1h-1zM11 14h1v1h-1zM11 15h1v1h-1zM11 16h1v1h-1zM11 17h1v1h-1zM12 1h1v1h-1zM12 4h1v1h-1zM12 10h1v1h-1zM12 12h1v1h-1zM12 13h1v1h-1zM12 19h1v1h-1zM13 10h1v1h-1zM13 11h1v1h-1zM13 12h1v1h-1zM13 13h1v1h-1zM14 2h1v1h-1zM14 10h1v1h-1zM14 11h1v1h-1zM14 14h1v1h-1zM15 10h1v1h-1zM15 15h1v1h-1zM16 10h1v1h-1zM16 16h1v1h-1zM17 10h1v1h-1zM17 17h1v1h-1zM18 10h1v1h-1zM19 19h1v1h-1zM20 10h1v1h-1z"/><path class="gl-c" d="M10 10h1v1h-1z"/></g><g class="gl-w" transform="translate(59.90 38) scale(0.024414 -0.024414)"><path d="M182 -478 172 -259 512 -249Q660 -244 727.0 -166.5Q794 -89 795 62V192H774Q761 89 691.0 34.5Q621 -20 505 -20Q303 -20 194.5 120.0Q86 260 86 525Q86 794 195.0 937.0Q304 1080 506 1080Q747 1080 781 868H798L815 1060H1042V94Q1042 -189 910.5 -323.5Q779 -458 492 -468ZM795 544Q795 855 569 855Q456 855 396.0 770.0Q336 685 336 525Q336 205 569 205Q688 205 741.5 281.0Q795 357 795 515Z"/><path transform="translate(1200 0)" d="M758 -20Q564 -20 478.5 86.0Q393 192 393 425V1276H88V1500H639V435Q639 325 675.5 275.0Q712 225 838 225Q924 225 1056 263L1084 22Q1001 0 924.0 -10.0Q847 -20 758 -20Z"/><path transform="translate(2400 0)" d="M150 0V224H547V836H210V1060H793V224H1112V0ZM660 1213Q589 1213 543.0 1259.0Q497 1305 497 1376Q497 1447 543.0 1493.0Q589 1539 660 1539Q731 1539 777.0 1493.0Q823 1447 823 1376Q823 1305 777.0 1259.0Q731 1213 660 1213Z"/><path transform="translate(3600 0)" d="M804 -10 790 224H767Q754 102 667.5 41.0Q581 -20 439 -20Q271 -20 178.5 61.5Q86 143 86 294Q86 468 210.0 561.0Q334 654 561 654Q682 654 771 635V656Q771 749 698.0 792.5Q625 836 480 840L216 847L236 1070L460 1067Q738 1063 873.0 953.5Q1008 844 1008 634V222L1168 200V0ZM771 436Q717 446 668.5 447.5Q620 449 567 449Q331 449 331 310Q331 185 493 185Q586 185 647.5 218.5Q709 252 740.0 303.5Q771 355 771 410Z"/></g></svg></h2>
+<p class="gl-sub">A native macOS app for terminals and coding agents on remote machines.</p>
+<ul class="gl-ls">
 <li>Every session lives in a small daemon, <code>gliad</code>, on the host where the work runs; the app talks to it over SSH.</li>
 <li>Closing the laptop or losing the network leaves every session running.</li>
 <li>Panes are grouped into projects, next to notes, a light editor and what the agents are doing.</li>
 </ul>
+</div>
+<div class="gl-pane gl-specimen"><span class="gl-ph"><i>01</i>astrocytes</span><span class="gl-pf">2× · Ca²⁺ · live</span><span class="gl-pb">click to start a wave</span><span class="gl-sb" aria-hidden="true">20 µm</span>
+<p class="gl-nogl gl-note">Nothing drawn here: the GPU piece is off, or this browser has no WebGL 2.</p>
+</div>
+</div>
+<div class="gl-pane"><span class="gl-ph"><i>01</i>the app</span><span class="gl-pf">stand-in</span>
+<figure class="gl-mock">
+<div class="gl-app" id="gl-app" aria-label="Glia window, drawn in HTML: a sidebar with three projects, an agent pane, a shell and the results pane in tiles, and the status line">
+  <div class="gl-bar"><i></i><i></i><i></i><span class="gl-kb" id="gl-kb" aria-hidden="true"></span></div>
+  <div class="gl-body">
+    <div class="gl-side">
+      <span class="gl-lab">projects</span>
+      <span class="gl-pr gl-p1" id="gl-side-p1"><span>analysis</span><span class="gl-g gl-work" id="gl-side-pg">●</span></span>
+      <span class="gl-ses gl-on gl-p1s" id="gl-side-s1"><span>fit mixed model</span><span class="gl-g gl-work" id="gl-side-g">●</span></span>
+      <span class="gl-ses gl-p1s"><span>zsh</span><span class="gl-g">○</span></span>
+      <span class="gl-ses gl-p1s" id="gl-side-res"><span>results · fit.svg</span><span></span></span>
+      <span class="gl-pr gl-p2" id="gl-side-p2"><span>thesis-figs</span><span class="gl-g gl-done">✓</span></span>
+      <span class="gl-ses gl-p2s" id="gl-side-s2" hidden><span>figure 3</span><span class="gl-g gl-done">✓</span></span>
+      <span class="gl-ses gl-p2s" hidden><span>figures.md</span><span></span></span>
+      <span class="gl-pr gl-p3"><span>pipeline</span><span class="gl-g gl-need">!</span></span>
+    </div>
+    <div class="gl-stage" id="gl-stage1">
+      <div class="gl-mp gl-tall gl-focus gl-st-work" id="gl-agentpane"><span class="gl-ph"><span class="gl-g gl-work" id="gl-ap-g">●</span> <b>fit mixed model</b></span><span class="gl-pf">jail</span><div id="gl-ap-out"><span class="gl-u">❯ fit the mixed model in fit.R and bootstrap its band</span>
+
+<span class="gl-t">⏺</span> Read(fit.R)
+  <span class="gl-r">⎿ 84 lines</span>
+<span class="gl-t">⏺</span> Read(data/trials.csv)
+  <span class="gl-r">⎿ 12,408 rows</span>
+<span class="gl-t">⏺</span> Update(fit.R)
+  <span class="gl-r">⎿ lme4 model with random slopes</span>
+<span class="gl-t">⏺</span> Write(boot.R)
+  <span class="gl-r">⎿ 10 lines</span>
+<span class="gl-t">⏺</span> Write(boot.sh)
+  <span class="gl-r">⎿ 8 lines</span>
+<span class="gl-t">⏺</span> boot.sh runs 2,000 resamples, about an hour. Submit it?
+<span class="gl-u">❯ looks good, submit it</span>
+
+<span class="gl-t">⏺</span> Bash(sbatch boot.sh)
+  <span class="gl-r">⎿ Submitted batch job 81225</span></div></div>
+      <div class="gl-mp" id="gl-shpane"><span class="gl-ph"><span class="gl-g">○</span> <b>zsh · ~/analysis</b></span><span class="gl-mc" id="gl-sh-out"><span class="gl-r">$</span> <span class="gl-u">squeue --me</span>
+<span class="gl-r">  JOBID  NAME     ST  TIME</span>
+  81223  qc       R   1:02:17
+  81224  qc       PD  0:00
+<span class="gl-r">$</span> <span class="gl-u">▍</span></span></div>
+      <div class="gl-mp gl-ed" id="gl-edpane" hidden><span class="gl-ph"><b>boot.R</b></span><span class="gl-pf">R</span><div class="gl-mc"><span class="gl-r"> 1</span>  library(lme4); library(parallel)
+<span class="gl-r"> 2</span>  trials &lt;- read.csv("data/trials.csv")
+<span class="gl-r"> 3</span>  fit &lt;- lmer(response ~ day + (day | subject), data = trials)
+<span class="gl-r"> 4</span>  grid &lt;- data.frame(day = seq(0, 8, by = 0.25))
+<span class="gl-r"> 5</span>  band_of &lt;- function(m) predict(m, newdata = grid, re.form = NA)
+<span class="gl-r"> 6</span>  cl &lt;- makeCluster(16)
+<span class="gl-r"> 7</span>  clusterEvalQ(cl, library(lme4))
+<span class="gl-r"> 8</span>  boot &lt;- bootMer(fit, band_of, nsim = 2000, parallel = "snow", cl = cl)
+<span class="gl-r"> 9</span>  stopCluster(cl)
+<span class="gl-r">10</span>  saveRDS(boot$t, "results/band.rds")</div><span class="gl-mm" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><div class="gl-ov" id="gl-ov" hidden aria-hidden="true"><i class="gl-w1"><b>● fit mixed model</b></i><i class="gl-w2 gl-on"><b>boot.R</b></i><i class="gl-w3"><b>○ zsh</b></i><i class="gl-w4"><b>results</b></i></div></div>
+      <div class="gl-mp gl-res" id="gl-respane"><span class="gl-ph"><b>results · fit.svg</b></span><span class="gl-pf" id="gl-res-z"></span><div class="gl-fig" id="gl-res-fig"><svg viewBox="0 0 360 220" aria-hidden="true"><use href="#gl-rp-pop" id="gl-res-pop"/><use href="#gl-rp-ax"/><use href="#gl-rp-lines"/><use href="#gl-rp-pts"/></svg></div><span class="gl-nav" id="gl-res-nav" hidden aria-hidden="true"><svg viewBox="0 0 360 220"><use href="#gl-rp-pop"/><use href="#gl-rp-ax"/><use href="#gl-rp-lines"/><use href="#gl-rp-pts"/></svg><i id="gl-res-navbox"></i></span></div>
+    </div>
+    <div class="gl-stage gl-two" id="gl-stage2">
+      <div class="gl-mp gl-tall gl-focus" id="gl-cappane"><span class="gl-ph"><span class="gl-g gl-done">✓</span> <b>figure 3</b></span><span class="gl-pf">jail</span><div><span class="gl-u">❯ make figure 3 from the dose data, as a slide for the lab meeting</span>
+
+<span class="gl-t">⏺</span> Read(data/dose.csv)
+  <span class="gl-r">⎿ 2,210 rows</span>
+<span class="gl-t">⏺</span> Read(fig3.R)
+  <span class="gl-r">⎿ 41 lines</span>
+<span class="gl-t">⏺</span> Update(fig3.R)
+  <span class="gl-r">⎿ log dose axis, error bars from the three runs</span>
+<span class="gl-t">⏺</span> Done: fig3.R is ready. Slide 2 of results/fig3.pdf is last week's; run it when you have checked the dose column.</div></div>
+      <div class="gl-mp gl-res gl-pdf"><span class="gl-ph"><b>results · fig3.pdf</b></span><span class="gl-pf">2/5</span><div class="gl-fig"><svg viewBox="0 0 360 270" aria-hidden="true"><rect width="360" height="270" fill="#fff"/><rect width="360" height="44" fill="#1f3a68"/><text x="18" y="29" font-family="Helvetica,Arial,sans-serif" font-size="16" fill="#fff">Dose response, cohort B</text><path d="M60 70V215H320" fill="none" stroke="#777"/><path d="M70 212 L110 206 L150 187 L190 152 L230 114 L270 95 L310 88" fill="none" stroke="#2b4c7e" stroke-width="2"/><circle cx="70" cy="212" r="4" fill="#2b4c7e"/><line x1="70" y1="203" x2="70" y2="221" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="110" cy="206" r="4" fill="#2b4c7e"/><line x1="110" y1="197" x2="110" y2="215" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="150" cy="187" r="4" fill="#2b4c7e"/><line x1="150" y1="178" x2="150" y2="196" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="190" cy="152" r="4" fill="#2b4c7e"/><line x1="190" y1="143" x2="190" y2="161" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="230" cy="114" r="4" fill="#2b4c7e"/><line x1="230" y1="105" x2="230" y2="123" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="270" cy="95" r="4" fill="#2b4c7e"/><line x1="270" y1="86" x2="270" y2="104" stroke="#2b4c7e" stroke-width="1.5"/><circle cx="310" cy="88" r="4" fill="#2b4c7e"/><line x1="310" y1="79" x2="310" y2="97" stroke="#2b4c7e" stroke-width="1.5"/><g font-family="Helvetica,Arial,sans-serif" font-size="9" fill="#555"><text x="190" y="240" text-anchor="middle">dose (µM, log)</text><text transform="translate(40 142) rotate(-90)" text-anchor="middle">response</text><text x="340" y="258" text-anchor="end" fill="#999">2</text></g></svg></div><div class="gl-cap"><b>fig3.pdf</b><span>PDF</span><span>p. 2/5 · frame 2</span><span class="gl-sp"></span><span><span class="gl-g">○</span> zsh · 16:48</span></div></div>
+      <div class="gl-mp"><span class="gl-ph"><b>figures.md</b></span><span class="gl-mc"><span class="gl-r">[x]</span> fig 1 design
+<span class="gl-r">[x]</span> fig 2 time course
+<span class="gl-r">[ ]</span> fig 3 dose response: check the dose column
+<span class="gl-r">[ ]</span> captions, then send to Ana</span></div>
+    </div>
+    <div class="gl-dock" id="gl-dock"><span class="gl-ph"><span class="gl-g">≡</span> <b>history · all · 1 !</b></span><span class="gl-pf">left 17:21</span><div class="gl-mc">
+<div class="gl-hr"><span class="gl-r">17:09</span><span class="gl-g gl-done">✓</span><span class="gl-t"><i class="gl-pb gl-p2"></i>thesis-figs <span class="gl-r">figure 3 ·</span> make figure 3 from the dose data, as a slide for the lab meeting</span><span class="gl-r">4 m</span></div>
+<div class="gl-hr"><span class="gl-r">17:12</span><span class="gl-g gl-need">!</span><span class="gl-t"><i class="gl-pb gl-p3"></i>pipeline <span class="gl-r">run qc ·</span> <span class="gl-q">permission</span> · Bash: rm -r out/qc …</span><span class="gl-q">waiting 15 m</span></div>
+<div class="gl-hr"><span class="gl-r">17:21</span><span class="gl-g gl-done">✓</span><span class="gl-t"><i class="gl-pb gl-p1"></i>analysis <span class="gl-r">fit mixed model ·</span> fit the mixed model in fit.R and bootstrap its band</span><span class="gl-r">2 m</span></div>
+<div class="gl-hr gl-on"><span class="gl-r">17:24</span><span class="gl-g gl-done">✓</span><span class="gl-t"><i class="gl-pb gl-p1"></i>analysis <span class="gl-r">fit mixed model ·</span> looks good, submit it</span><span class="gl-r">3 m</span></div>
+<div class="gl-hd"><span class="gl-g gl-done">✓</span> fit mixed model · <span class="gl-r">turn 2 of 2 · 17:27 · 3 m</span>
+
+Done: the bootstrap band is on the plot in results/fit.svg
+
+<span class="gl-u">> looks good, submit it</span><span class="gl-scr"><span class="gl-r">screen 17:27</span><i></i><i></i><i></i><i></i></span></div></div></div>
+  </div>
+  <div class="gl-asl"><b id="gl-asl-proj">analysis</b><span id="gl-asl-env">r-env · login1</span><span>tiles</span><span class="gl-sp"></span><span><span class="gl-g gl-work">●</span> <i id="gl-n-work">1</i></span><span><span class="gl-g gl-need">!</span> <i id="gl-n-need">1</i></span><span><span class="gl-g gl-done">✓</span> <i id="gl-n-done">1</i></span><span>22 ms</span></div>
+  <span class="gl-ptr" id="gl-ptr" aria-hidden="true"></span>
+</div>
+<img class="gl-still" src="assets/img/glia/window-drawing.png" width="1240" height="483" loading="lazy" alt="Glia’s window, drawn: a sidebar with three projects, an agent pane that has written a bootstrap script and submitted it as a Slurm job after asking, a shell showing squeue, a results pane with a plot, and the status line.">
+<figcaption><span class="gl-cap-rest">Drawing, not a screenshot: the window drawn in HTML on Glia’s page, at rest.</span><span class="gl-cap-play">Drawing, not a screenshot: the window as Glia’s page draws it in HTML, playing one task of about 58 s. A stand-in writes the agent’s turns; the keys pressed and the pointer are shown. A click pauses it.</span></figcaption>
+</figure>
+</div>
+</div>
 <!-- Once Glia's page is published, its link goes back at the end of this line: · <a href="/glia/">site</a> (the one place for its path). -->
-<p class="st">not yet published · macOS 13 or later</p>
+<p class="gl-sl"><b class="gl-brand">glia</b><span>not yet published</span><span>macOS 13 or later</span></p>
+<svg class="gl-defs" width="0" height="0" aria-hidden="true"><defs><g id="gl-rp-pop"><path d="M44.0 163.5 L344.0 59.8 L344.0 24.1 L44.0 144.8 Z" fill="#3b4a6b" fill-opacity=".12"/><line x1="44.0" y1="154.1" x2="344.0" y2="41.9" stroke="#2b3345" stroke-width="2.2"/></g><g id="gl-rp-ax" font-family="Helvetica,Arial,sans-serif" font-size="9" fill="#555"><path d="M44 16V186H344" fill="none" stroke="#777" stroke-width="1"/><g stroke="#777" stroke-width="1"><line x1="44.0" y1="186" x2="44.0" y2="190"/><line x1="119.0" y1="186" x2="119.0" y2="190"/><line x1="194.0" y1="186" x2="194.0" y2="190"/><line x1="269.0" y1="186" x2="269.0" y2="190"/><line x1="344.0" y1="186" x2="344.0" y2="190"/><line x1="40" y1="186.0" x2="44" y2="186.0"/><line x1="40" y1="143.5" x2="44" y2="143.5"/><line x1="40" y1="101.0" x2="44" y2="101.0"/><line x1="40" y1="58.5" x2="44" y2="58.5"/><line x1="40" y1="16.0" x2="44" y2="16.0"/></g><text x="44.0" y="201" text-anchor="middle">0</text><text x="119.0" y="201" text-anchor="middle">2</text><text x="194.0" y="201" text-anchor="middle">4</text><text x="269.0" y="201" text-anchor="middle">6</text><text x="344.0" y="201" text-anchor="middle">8</text><text x="37" y="189.5" text-anchor="end">0</text><text x="37" y="147.0" text-anchor="end">10</text><text x="37" y="104.5" text-anchor="end">20</text><text x="37" y="62.0" text-anchor="end">30</text><text x="37" y="19.5" text-anchor="end">40</text><text x="194" y="213" text-anchor="middle">day</text><text transform="translate(10 101) rotate(-90)" text-anchor="middle">response</text></g><g id="gl-rp-lines"><line x1="44.0" y1="160.5" x2="344.0" y2="38.1" stroke="#3b7ea1" stroke-width="1.6" stroke-opacity=".9"/><line x1="44.0" y1="147.8" x2="344.0" y2="66.2" stroke="#d08a3e" stroke-width="1.6" stroke-opacity=".9"/><line x1="44.0" y1="169.0" x2="344.0" y2="26.2" stroke="#5a9e6f" stroke-width="1.6" stroke-opacity=".9"/><line x1="44.0" y1="139.2" x2="344.0" y2="37.2" stroke="#8d6cb0" stroke-width="1.6" stroke-opacity=".9"/></g><g id="gl-rp-pts"><circle cx="44.0" cy="162.5" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="81.5" cy="141.3" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="119.0" cy="131.6" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="156.5" cy="117.0" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="194.0" cy="106.4" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="231.5" cy="85.6" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="269.0" cy="60.2" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="306.5" cy="50.2" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="344.0" cy="30.2" r="3" fill="#3b7ea1" fill-opacity=".8"/><circle cx="44.0" cy="145.8" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="81.5" cy="134.5" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="119.0" cy="125.9" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="156.5" cy="129.9" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="194.0" cy="100.4" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="231.5" cy="92.9" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="269.0" cy="82.7" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="306.5" cy="89.3" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="344.0" cy="79.5" r="3" fill="#d08a3e" fill-opacity=".8"/><circle cx="44.0" cy="175.8" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="81.5" cy="154.7" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="119.0" cy="131.0" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="156.5" cy="115.8" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="194.0" cy="93.6" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="231.5" cy="84.7" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="269.0" cy="59.5" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="306.5" cy="41.0" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="344.0" cy="31.3" r="3" fill="#5a9e6f" fill-opacity=".8"/><circle cx="44.0" cy="126.1" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="81.5" cy="122.2" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="119.0" cy="104.6" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="156.5" cy="105.7" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="194.0" cy="93.9" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="231.5" cy="78.1" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="269.0" cy="63.6" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="306.5" cy="45.2" r="3" fill="#8d6cb0" fill-opacity=".8"/><circle cx="344.0" cy="35.3" r="3" fill="#8d6cb0" fill-opacity=".8"/></g></defs></svg>
+</section>
+
+<!-- Tanycyte: from tanycyte at commit f03dc5f (README.md, face/README.md, face/src/theme.rs, assets/logo/out/,
+ docs/screenshot-fixture-library-open.png): Glia's look as its face draws it, Cascadia Code for data and keys, the
+ system's face for prose. The repository has no drawn or animated brief (assets/, docs/; there is no site/), so the band
+ keeps the screenshot. Styles: assets/bands/tanycyte.css. -->
+<section class="band b-tany" id="tanycyte" data-face="Cascadia Code and the system's face">
+<div class="ty-wrap">
+<div class="ty-top">
+<h2><picture><source media="(prefers-color-scheme: dark)" srcset="assets/img/tanycyte/lockup-dark.svg"><img src="assets/img/tanycyte/lockup-light.svg" width="292" height="47" loading="lazy" alt="Tanycyte"></picture></h2>
+<p class="ty-st">not yet published · macOS</p>
 </div>
-<figure class="vis"><img src="assets/img/glia/window-drawing.png" width="1240" height="483" loading="lazy" alt="Glia’s window, drawn: a sidebar with three projects, an agent pane that has written a bootstrap script and submitted it as a Slurm job after asking, a shell showing squeue, a results pane with a plot, and the status line."><figcaption>Drawing, not a screenshot: the window drawn in HTML on Glia’s page, at rest.</figcaption></figure>
+<div class="ty-grid">
+<div class="ty-txt">
+<span class="ty-k">brief</span>
+<p class="ty-ld">A morning brief beside Glia, made from what the night left: sessions, commits, papers and news.</p>
+<dl class="ty-parts">
+<div><dt class="ty-k">brain</dt><dd>Collects Claude sessions, commits, new papers and feed news, ranks them and summarises them into one <code>brief.json</code>. Python; Claude does the ranking and the summaries.</dd></div>
+<div><dt class="ty-k">face</dt><dd>Draws the brief in Glia’s look and runs the brain. Rust and GPUI.</dd></div>
+<div><dt class="ty-k">library</dt><dd>Every paper it has read, searchable by title, authors, abstract, summary or DOI.</dd></div>
+</dl>
+</div>
+<figure class="ty-vis"><img src="assets/img/tanycyte/library-screenshot.png" width="1000" height="700" loading="lazy" alt="Tanycyte’s library page in a dark theme: a search for atlas finds two papers; the first is unfolded with its authors, summary, matched sentence, reason, readings and alert."><figcaption>Screenshot, 2026-11-06: the library page with the fixture’s papers, a search for “atlas” unfolded.</figcaption></figure>
+</div>
+<p class="ty-keys"><span><kbd>b</kbd>library</span><span><kbd>/</kbd>search</span><span><kbd>⏎</kbd>unfold</span><span><kbd>j</kbd><kbd>k</kbd>move</span></p>
 </div>
 </section>
 
-<section class="band b-tany" id="tanycyte">
-<div class="wrap">
-<div class="txt">
-<h2><picture><source media="(prefers-color-scheme: dark)" srcset="assets/img/tanycyte/lockup-dark.svg"><img src="assets/img/tanycyte/lockup-light.svg" width="292" height="47" alt="Tanycyte"></picture></h2>
-<p class="ld">A morning brief beside Glia, made from what the night left: sessions, commits, papers and news.</p>
-<ul>
-<li><span class="k">brain</span>Collects Claude sessions, commits, new papers and feed news, ranks them and summarises them into one <code>brief.json</code>. Python; Claude does the ranking and the summaries.</li>
-<li><span class="k">face</span>Draws the brief in Glia’s look and runs the brain. Rust and GPUI.</li>
-<li><span class="k">library</span>Every paper it has read, searchable by title, authors, abstract, summary or DOI.</li>
-</ul>
-<p class="st">not yet published · macOS</p>
-</div>
-<figure class="vis"><img src="assets/img/tanycyte/library-screenshot.png" width="1000" height="700" loading="lazy" alt="Tanycyte’s library page in a dark theme: a search for atlas finds two papers; the first is unfolded with its authors, summary, matched sentence, reason, readings and alert."><figcaption>Screenshot, 2026-11-06: the library page with the fixture’s papers, a search for “atlas” unfolded.</figcaption></figure>
-</div>
-</section>
-
+<!-- Importin: a miniature of Importin's page, importin at commit 626fff9 (v0.1.1; site/index.html, site/assets/site.css):
+ its header, its lead, its hero (the pore, inline SVG with its CSS keyframes, and the box that pauses it) and a section
+ in its rhythm, the facts from its "How it works"; classes, ids and keyframes prefixed im-. Its site.js (play in the
+ pore, letters rising behind the whole window) is not ported: it draws outside the band. Styles: assets/bands/importin.css. -->
 <section class="band b-importin" id="importin">
-<div class="wrap">
-<div class="txt">
-<h2><svg class="mk" viewBox="0 0 32 32" aria-hidden="true"><path d="M30.2 12.17L30.2 19.83L25 17.67L25 14.33ZM28.75 23.34L23.34 28.75L21.18 23.55L23.55 21.18ZM19.83 30.2L12.17 30.2L14.33 25L17.67 25ZM8.66 28.75L3.25 23.34L8.45 21.18L10.82 23.55ZM1.8 19.83L1.8 12.17L7 14.33L7 17.67ZM3.25 8.66L8.66 3.25L10.82 8.45L8.45 10.82ZM12.17 1.8L19.83 1.8L17.67 7L14.33 7ZM23.34 3.25L28.75 8.66L23.55 10.82L21.18 8.45Z"/></svg>Importin</h2>
-<p class="ld">A read-only MCP server for Apple Mail.</p>
-<ul>
-<li>Reads what Mail.app already keeps on your Mac, the Envelope Index and the <code>.emlx</code> files: no index to build, no watcher, no network.</li>
-<li>Six tools for an AI agent: find messages by sender, recipient, Cc, subject, date and mailbox; read one message, S/MIME-encrypted ones included; read an attachment as text.</li>
-<li>It cannot send, move, flag or delete mail: no code path for it exists, and a test greps the source to keep it that way.</li>
-</ul>
-<p class="st">v0.1.1 · macOS, Apple Silicon or Intel · <a href="https://glia-org.github.io/importin/">site</a> · <a href="https://github.com/glia-org/importin/releases">releases</a></p>
+<div class="im-wrap">
+<header class="im-top">
+<h2 class="im-brand"><svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M30.2 12.17L30.2 19.83L25 17.67L25 14.33ZM28.75 23.34L23.34 28.75L21.18 23.55L23.55 21.18ZM19.83 30.2L12.17 30.2L14.33 25L17.67 25ZM8.66 28.75L3.25 23.34L8.45 21.18L10.82 23.55ZM1.8 19.83L1.8 12.17L7 14.33L7 17.67ZM3.25 8.66L8.66 3.25L10.82 8.45L8.45 10.82ZM12.17 1.8L19.83 1.8L17.67 7L14.33 7ZM23.34 3.25L28.75 8.66L23.55 10.82L21.18 8.45Z"/></svg>Importin</h2>
+<nav aria-label="Importin"><span>v0.1.1</span><a href="https://glia-org.github.io/importin/">Site</a><a href="https://github.com/glia-org/importin">Source</a><a href="https://github.com/glia-org/importin/releases">Releases</a></nav>
+</header>
+<div class="im-lead">
+<p class="im-h">A read-only MCP server for Apple Mail</p>
+<div class="im-lead-copy">
+<p>Importin reads what Mail.app already keeps on your Mac and gives an AI agent six tools to find and read it, <span class="im-nw">S/MIME-encrypted</span> messages included. It cannot send, move, flag or delete mail.</p>
+<p class="im-get"><a class="im-btn" href="https://github.com/glia-org/importin/releases/latest">Download</a><span>A zip for Apple Silicon or for Intel. The binary is not notarised by Apple, so macOS refuses it once; one command clears that (<a href="https://glia-org.github.io/importin/#install">Install</a>), or build it from source.</span></p>
 </div>
-<figure class="vis"><img src="assets/img/importin/pore.svg" width="1200" height="442" loading="lazy" alt="A nuclear pore seen from the cytoplasm, a ring of eight subunits among smaller pores. Four letters, each with an address tag and held by an importin, move in toward the centre and pass through the pore one after another. Nothing moves outward."><figcaption>Drawing: letters carried in through a nuclear pore, one after another; nothing moves outward. The animation from Importin’s README.</figcaption></figure>
+</div>
+<figure class="im-plate">
+<svg viewBox="-380 -140 760 280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Drawing: a nuclear pore seen from the cytoplasm, a ring of eight subunits among smaller pores. Four letters, each with an address tag and held by an importin, move in toward the centre and pass through the pore one after another. Nothing moves outward.">
+  <defs>
+    <rect id="im-p-sb" x="-12" y="-86" width="24" height="40" rx="10"/>
+    <path id="im-p-fg" d="M0-50q5 7 0 13t0 13t0 11"/>
+    <g id="im-p-np">
+      <circle class="im-p-rim" r="94"/>
+      <circle class="im-p-chan" r="52"/>
+      <use href="#im-p-fgs"/>
+      <use href="#im-p-sbs"/>
+    </g>
+    <g id="im-p-fgs" class="im-p-mesh"><use href="#im-p-fg" transform="rotate(22.5)"/><use href="#im-p-fg" transform="rotate(67.5)"/><use href="#im-p-fg" transform="rotate(112.5)"/><use href="#im-p-fg" transform="rotate(157.5)"/><use href="#im-p-fg" transform="rotate(202.5)"/><use href="#im-p-fg" transform="rotate(247.5)"/><use href="#im-p-fg" transform="rotate(292.5)"/><use href="#im-p-fg" transform="rotate(337.5)"/></g>
+    <g id="im-p-sbs" class="im-p-sub"><use href="#im-p-sb"/><use href="#im-p-sb" transform="rotate(45)"/><use href="#im-p-sb" transform="rotate(90)"/><use href="#im-p-sb" transform="rotate(135)"/><use href="#im-p-sb" transform="rotate(180)"/><use href="#im-p-sb" transform="rotate(225)"/><use href="#im-p-sb" transform="rotate(270)"/><use href="#im-p-sb" transform="rotate(315)"/></g>
+    <g id="im-p-env" transform="scale(1.2)"><path class="im-p-imp" d="M-16.5-1C-17.5 14-9 18.5 0 18.5 9 18.5 17.5 14 16.5-1"/><rect class="im-p-box" x="-12" y="-8" width="24" height="16" rx="2"/><path class="im-p-flap" d="M-11.5-7.2 0 1.2 11.5-7.2"/><path class="im-p-str" d="M9-5.5 14.5-12"/><rect class="im-p-tag" x="12.5" y="-17.5" width="8" height="5.5" rx="1.4" transform="rotate(-30 16.5 -14.75)"/></g>
+  </defs>
+  <rect class="im-p-field" x="-380" y="-140" width="760" height="280"/>
+  <g class="im-p-far">
+    <use href="#im-p-np" transform="translate(-318 88) scale(.3)"/>
+    <use href="#im-p-np" transform="translate(-292 -96) scale(.2)"/>
+    <use href="#im-p-np" transform="translate(-196 104) scale(.24)"/>
+    <use href="#im-p-np" transform="translate(-84 -120) scale(.15)"/>
+    <use href="#im-p-np" transform="translate(126 116) scale(.16)"/>
+    <use href="#im-p-np" transform="translate(212 -92) scale(.22)"/>
+    <use href="#im-p-np" transform="translate(322 -38) scale(.26)"/>
+    <use href="#im-p-np" transform="translate(300 106) scale(.2)"/>
+  </g>
+  <circle class="im-p-rim" r="94"/><circle class="im-p-chan" r="52"/><use class="im-p-swirl" href="#im-p-fgs"/><use class="im-p-subs" href="#im-p-sbs"/>
+  <circle class="im-p-rel im-r1" r="5"/><circle class="im-p-rel im-r2" r="5"/><circle class="im-p-rel im-r3" r="5"/><circle class="im-p-rel im-r4" r="5"/>
+  <use class="im-cargo im-c1" href="#im-p-env"/><use class="im-cargo im-c2" href="#im-p-env"/><use class="im-cargo im-c3" href="#im-p-env"/><use class="im-cargo im-c4" href="#im-p-env"/>
+</svg>
+<figcaption>
+<p>Drawing: a nuclear pore, eight subunits around the channel. Importin, the cup under each letter, is the carrier that reads the address tag on its cargo and takes it in; exportins carry out. This one carries your mail in to the agent. Nothing goes out.</p>
+<label class="im-pause"><input type="checkbox"> Pause the motion</label>
+</figcaption>
+</figure>
+<div class="im-s">
+<h3>How it works</h3>
+<div class="im-body">
+<dl class="im-facts">
+<dt>Mail’s own files</dt>
+<dd>The Envelope Index, Mail’s SQLite database, answers searches by header; the <code>.emlx</code> message files, and the attachments Mail stores beside them, give bodies and attachments. Both are read in <code>~/Library/Mail</code>, where Mail keeps them: no index to build, no watcher, no network.</dd>
+<dt>Six tools</dt>
+<dd>Find messages by sender, recipient, Cc, subject, date, mailbox or words in the body; read a message with its To, Cc and Bcc, its thread, or an attachment as text; list mailboxes and accounts.</dd>
+<dt>S/MIME</dt>
+<dd>Encrypted messages are decrypted per request, by default with the key in your keychain; the plaintext lives in the response only and is never written to disk.</dd>
+<dt>Read-only</dt>
+<dd>No code path sends, moves, flags or deletes mail, and a test reads the source to keep it that way.</dd>
+</dl>
+</div>
+</div>
 </div>
 </section>
 
-<section class="band b-lemna" id="lemna">
-<div class="wrap">
-<div class="txt">
-<h2><svg class="mk" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 7.75L8.5 7H14V8.5H8.5Z"/><rect x="8.5" y="3.5" width="1.5" height="8.5"/></svg>Lemna</h2>
-<p class="ld">A quiet place to write without stopping.</p>
-<ul>
-<li><kbd>⌃⌥Space</kbd> summons a one-line box over the app you are in; you write forward while the text glides past a fixed caret, and <kbd>⌘⏎</kbd> puts it into that app.</li>
+<!-- Lemna: a miniature of Lemna's page, lemna at commit 2a325d6 (site/index.html, site/assets/site.css, and its demo in
+ site/assets/site.js, last changed in ea059ad): Still's paper and warm dark, Literata, the stacked header, and the demo,
+ live and without sound; classes and ids prefixed lm-. Styles: assets/bands/lemna.css; the demo: assets/bands/lemna.js.
+ Without scripts and under reduced motion: assets/img/lemna/still-day.png and still-night.png. -->
+<section class="band b-lemna" id="lemna" data-js="assets/bands/lemna.js">
+<div class="lm-wrap">
+<div class="lm-top">
+<h2 class="lm-brand"><svg viewBox="0 0 16 16" width="32" height="32" aria-hidden="true"><path d="M2 7.75L8.5 7H14V8.5H8.5Z"/><rect x="8.5" y="3.5" width="1.5" height="8.5"/></svg>Lemna</h2>
+<p class="lm-h">A quiet place to write without stopping.</p>
+<p class="lm-lead">Summon it over any app with <kbd>⌃⌥Space</kbd>, write forward for as long as you like while the text glides past the caret, and <kbd>⌘⏎</kbd> puts all of it into that app.</p>
+<p class="lm-get"><a class="lm-btn" href="https://github.com/glia-org/lemna/releases/latest">Download</a><span>v0.1.0, macOS 14 or later. Self-signed, not notarized: right-click it and choose Open the first time. <a href="https://glia-org.github.io/lemna/">Site</a> · <a href="https://github.com/glia-org/lemna">Source on GitHub</a></span></p>
+</div>
+<figure class="lm-demo">
+<picture class="lm-still"><source media="(prefers-color-scheme: dark)" srcset="assets/img/lemna/still-night.png"><img src="assets/img/lemna/still-day.png" width="1100" height="620" loading="lazy" alt="Lemna’s box, one line tall, over a dimmed app. On the line, in a serif face: “reeds bent over them”, the older words fading toward the left, the caret at 60 % of the width. Around it the dim is a curtain of faint mirrored glyphs in columns, brighter streams falling through it."></picture>
+<div class="lm-fit lm-live" id="lm-fit">
+  <div class="lm-stage" id="lm-stage" tabindex="0" role="group" aria-label="Lemna over an app window. Return opens the box to write in.">
+    <div class="lm-win" aria-hidden="true">
+      <div class="lm-bar"><i></i><i></i><i></i></div>
+      <div class="lm-doc">
+        <b class="lm-t" style="width:34%"></b>
+        <b style="width:94%"></b><b style="width:88%"></b><b style="width:97%"></b><b style="width:52%"></b>
+        <span class="lm-gap"></span>
+        <b style="width:90%"></b><b style="width:64%"></b>
+        <div class="lm-cur" id="lm-pasted"><i class="lm-ic"></i></div>
+      </div>
+    </div>
+    <div class="lm-dim" id="lm-dim"><canvas></canvas></div>
+    <div class="lm-ring" id="lm-ring" aria-hidden="true"></div>
+    <div class="lm-hint" id="lm-hint" aria-hidden="true"></div>
+    <div class="lm-box" id="lm-box">
+      <div class="lm-ll-b"><span></span></div>
+      <i class="lm-ll-c"></i>
+      <div class="lm-ll-a"><span></span></div>
+      <input class="lm-ll-in" id="lm-ll-in" type="text" aria-label="Write in Lemna's box; Return sends it into the app window" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    </div>
+  </div>
+</div>
+<figcaption class="lm-under"><p class="lm-live">Drawn live in the browser, as on Lemna’s page, after the app of 2026-11-06, a build newer than v0.1.0; no sound. Click into the box to write your own; <kbd>⏎</kbd> sends it.</p><p class="lm-still">Screenshot, 2026-11-06: the box over a dimmed app, cut from the app’s own render of a build newer than v0.1.0.</p></figcaption>
+</figure>
+<ul class="lm-facts">
 <li>Every key is kept in an encrypted journal on your Mac until the text has gone out.</li>
 <li>Nothing leaves your Mac: no network, no account, no telemetry.</li>
 </ul>
-<p class="st">v0.1.0 · macOS 14 or later · <a href="https://glia-org.github.io/lemna/">site</a> · <a href="https://github.com/glia-org/lemna/releases">releases</a></p>
-</div>
-<figure class="vis"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/img/lemna/still-night.png"><img src="assets/img/lemna/still-day.png" width="1100" height="620" loading="lazy" alt="Lemna’s box, one line tall, over a dimmed app. On the line, in a serif face: “reeds bent over them”, the older words fading toward the left, the caret at 60 % of the width. Around it the dim is a curtain of faint mirrored glyphs in columns, brighter streams falling through it."></picture><figcaption>Screenshot, 2026-11-06: the box over a dimmed app, cut from the app’s own render of a build newer than v0.1.0.</figcaption></figure>
 </div>
 </section>
 
+<!-- Moin Journal: no page exists; the band is drawn from moin-journal at commit 2de4f05 (README.md, docs/mac-app.md, the
+ design spec's store layout, assets/brand/abendlicht.json and assets/brand/logo/mark-light.svg): Abendlicht, the mark,
+ Literata, and one entry filed into the store's folder, CSS only. Styles and the loop: assets/bands/moin.css. -->
 <section class="band b-moin" id="moin-journal">
-<div class="wrap">
-<div class="txt">
-<h2><svg class="mk" viewBox="212 195 600 600" aria-hidden="true"><use href="#mk-moin"/></svg>Moin Journal</h2>
-<p class="ld">A private journal for the Mac that imports Day One exports.</p>
-<ul>
+<div class="mj-wrap">
+<div class="mj-txt">
+<h2 class="mj-name"><svg class="mj-mk" viewBox="212 195 600 600" aria-hidden="true"><path class="mj-p" d="M512.94 599.65L375.89 230.3L371.67 231.88L511.06 600.35ZM512.96 599.71L398.21 222.83L393.91 224.16L511.04 600.29ZM512.97 599.76L420.93 216.71L416.56 217.78L511.03 600.24ZM512.98 599.82L443.98 211.96L439.55 212.76L511.02 600.18ZM512.99 599.88L467.27 208.59L462.8 209.12L511.01 600.12ZM513 599.94L490.72 206.61L486.23 206.88L511 600.06ZM513 600L514.25 206.05L509.75 206.05L511 600ZM513 600.06L537.77 206.88L533.28 206.61L511 599.94ZM512.99 600.12L561.2 209.12L556.73 208.59L511.01 599.88ZM512.98 600.18L584.45 212.76L580.02 211.96L511.02 599.82ZM512.97 600.24L607.44 217.78L603.07 216.71L511.03 599.76ZM512.96 600.29L630.09 224.16L625.79 222.83L511.04 599.71ZM512.94 600.35L652.33 231.88L648.11 230.3L511.06 599.65Z"/><path class="mj-l" d="M252 240L352 240L512 600L352 508L352 784L252 784Z"/><path class="mj-r" d="M772 240L672 240L512 600L672 508L672 784L772 784Z"/></svg>Moin Journal</h2>
+<p class="mj-ld">A private journal for the Mac that imports Day One exports.</p>
+<ul class="mj-facts">
 <li>Entries are Markdown files and media are files, in an ordinary folder you choose; the default is <code>~/Moin Journal</code>.</li>
 <li>A Day One export comes in with its media; running the import again finishes the rest without duplicates.</li>
 <li>No AI, no telemetry, no server of ours. The Mac app comes first; iPhone and Windows are planned.</li>
 </ul>
-<p class="st">not yet published · macOS 26</p>
+<p class="mj-st">not yet published · macOS 26</p>
 </div>
-<figure class="vis"><svg class="big" viewBox="212 195 600 600" role="img" aria-label="Moin Journal’s mark: two pennants forming an M, a fan of pages between them"><g id="mk-moin"><path style="fill:var(--b-cp)" d="M512.94 599.65L375.89 230.3L371.67 231.88L511.06 600.35ZM512.96 599.71L398.21 222.83L393.91 224.16L511.04 600.29ZM512.97 599.76L420.93 216.71L416.56 217.78L511.03 600.24ZM512.98 599.82L443.98 211.96L439.55 212.76L511.02 600.18ZM512.99 599.88L467.27 208.59L462.8 209.12L511.01 600.12ZM513 599.94L490.72 206.61L486.23 206.88L511 600.06ZM513 600L514.25 206.05L509.75 206.05L511 600ZM513 600.06L537.77 206.88L533.28 206.61L511 599.94ZM512.99 600.12L561.2 209.12L556.73 208.59L511.01 599.88ZM512.98 600.18L584.45 212.76L580.02 211.96L511.02 599.82ZM512.97 600.24L607.44 217.78L603.07 216.71L511.03 599.76ZM512.96 600.29L630.09 224.16L625.79 222.83L511.04 599.71ZM512.94 600.35L652.33 231.88L648.11 230.3L511.06 599.65Z"/><path style="fill:var(--b-hi)" d="M252 240L352 240L512 600L352 508L352 784L252 784Z"/><path style="fill:var(--b-ac)" d="M772 240L672 240L512 600L672 508L672 784L772 784Z"/></g></svg><figcaption>Drawing: the app’s mark; its repository has no screenshot of the app yet.</figcaption></figure>
+<figure class="mj-vis">
+<div class="mj-scene" role="img" aria-label="Drawing: a journal page dated Tuesday, 10 November is carried down into the entries folder of a Moin Journal store; a new folder named by its ULID opens at the top of the list, selected, with its files current.md and the revision under it. Below it the entries of the days before, each a folder.">
+<div class="mj-page" aria-hidden="true"><b>Tuesday, 10 November</b><i></i><i></i><i></i></div>
+<div class="mj-win" data-face="the system's face">
+<p class="mj-path">~/Moin Journal/journals/…/entries</p>
+<ul class="mj-rows">
+<li class="mj-new"><span class="mj-id">01M73K4N8R…</span><span class="mj-d">10 Nov 2026 at 21:42</span><span class="mj-files">current.md · r-01M73K4N8R….moin</span></li>
+<li><span class="mj-id">01M712N39R…</span><span class="mj-d">9 Nov 2026 at 22:15</span></li>
+<li><span class="mj-id">01M6WYSRR0…</span><span class="mj-d">8 Nov 2026 at 07:51</span></li>
+<li><span class="mj-id">01M6W0M2D0…</span><span class="mj-d">7 Nov 2026 at 23:03</span></li>
+<li><span class="mj-id">01M6S8VR68…</span><span class="mj-d">6 Nov 2026 at 21:30</span></li>
+<li><span class="mj-id">01M6PTWEJR…</span><span class="mj-d">5 Nov 2026 at 22:47</span></li>
+</ul>
+</div>
+</div>
+<figcaption><p>Drawing: an entry filed into your store, a folder per entry named by its ULID (the first ten characters are the entry’s time), with its Markdown file beside the revision it is made from.</p><label class="mj-pz"><input type="checkbox"> pause</label></figcaption>
+</figure>
 </div>
 </section>
 
@@ -161,7 +375,7 @@
 <footer class="wrap foot">
 <p>No cookies, no analytics, no third-party requests.</p>
 <p><a href="https://github.com/glia-org">github.com/glia-org</a></p>
-<p>This page is licensed under the Apache License 2.0. Literata by the Literata Project Authors, under the <a href="assets/fonts/OFL.txt">SIL Open Font License 1.1</a>; the page serves a subset of it.</p>
+<p>This page is licensed under the Apache License 2.0. Literata by the Literata Project Authors, under the <a href="assets/fonts/OFL.txt">SIL Open Font License 1.1</a>; the page serves a subset of it, and Lemna’s band its Latin file for a character typed into the box that the subset lacks. Cascadia Code by Microsoft, under the <a href="assets/fonts/glia/OFL-CascadiaCode.txt">SIL Open Font License 1.1</a>, unmodified.</p>
 </footer>
 </body>
 </html>
