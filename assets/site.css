@@ -1,0 +1,252 @@
+/* glia-org.github.io: one page, the ground neutral and light or dark as the system is (G1). The hero is a tissue that
+   is a diagram, inline SVG with the keyframes at the end of this file; below it each project is a full-width band in
+   that project's own palette, mark and type, with the page's content column inside. Literata for prose (OFL,
+   fonts/OFL.txt, a subset: see README.md); code, keys and the drawing's small print in the system's monospaced face,
+   none downloaded. Rules for changing the page: README.md. */
+@font-face{font-family:Literata;src:url(fonts/literata-latin.woff2) format("woff2");font-weight:200 900;font-style:normal;
+  font-display:swap}
+:root{
+  color-scheme:light dark;
+  --bg:#f4f3f0;--hi:#1f1f22;--cp:#4a4a50;--mu:#64646a;--ln:#dcdad4;
+  --a-glia:#2e5bb8;--a-lemna:#577446;--a-importin:#4a3d9a;--a-tany:#4870c4;--a-moin:#a04967;
+  --ne:#8a877f;--nf:rgba(90,86,78,.07);--pa:#fbfaf7;--pb:#fbfaf7;--fold:#e6e3dc;--ca:#2f4624;
+  --serif:Literata,Charter,"Iowan Old Style",Georgia,serif;
+  --smono:ui-monospace,Menlo,"SF Mono",SFMono-Regular,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#141418;--hi:#ececef;--cp:#b6b6bd;--mu:#8d8d95;--ln:#2c2c33;
+  --a-glia:#7aa2f7;--a-lemna:#a2b88e;--a-importin:#97a2ff;--a-tany:#9ab8fa;--a-moin:#cc7893;
+  --ne:#62626f;--nf:rgba(150,150,180,.07);--pa:#1d1d23;--pb:#0d0d11;--fold:#24242b;--ca:#e3f2d4}}
+*{box-sizing:border-box}
+html{background:var(--bg);color:var(--cp);-webkit-text-size-adjust:100%}
+body{margin:0;font:17px/1.6 var(--serif);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,p,ul,figure{margin:0}
+ul{list-style:none;padding:0}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
+code,kbd{font-family:var(--smono);font-size:.86em}
+img{display:block;max-width:100%;height:auto}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:12px;z-index:5;background:var(--bg);color:var(--hi);padding:4px 10px}
+
+.wrap{max-width:1200px;margin:0 auto;padding-left:40px;padding-right:40px}
+
+/* the head: the wordmark (M1), the two sentences */
+.top{padding-top:30px;font-size:22px;line-height:1;color:var(--hi);letter-spacing:.01em}
+h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacing:-.012em;margin-top:56px}
+.lead{font-size:21px;line-height:1.5;margin-top:14px;max-width:34em}
+
+/* the hero: the desktop drawing, or from 760 px down the phone one; the hidden one is display:none, so it does not
+   animate */
+.hero{max-width:1200px;margin:28px auto 0}
+.hero .hp{display:none;max-width:520px;margin:0 auto}
+.hero a{text-decoration:none}
+/* wider than the drawing, its far layer ends in whole cells rather than at the drawing's edge */
+@media (min-width:1201px){.hero .hd{overflow:visible;clip-path:inset(0 -100px)}}
+.hero figcaption{display:flex;justify-content:flex-end;margin-top:4px;padding:0 40px;font-size:15px;color:var(--mu);
+  min-height:1.6em}
+.pz{display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+.pz input{margin:0;width:15px;height:15px;accent-color:var(--hi)}
+
+/* the projects: one band each, in the project's palette; text left, the visual right */
+.band{--b-bg:var(--bg);--b-hi:var(--hi);--b-cp:var(--cp);--b-mu:var(--mu);--b-ln:var(--ln);--b-ac:var(--hi);
+  background:var(--b-bg);color:var(--b-cp);padding:76px 0 80px;box-shadow:inset 0 1px var(--b-ln)}
+.projects{margin-top:56px}
+.band>.wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:36px 64px;align-items:center}
+.band h2{display:flex;align-items:center;gap:14px;font-size:34px;line-height:1.15;font-weight:400;color:var(--b-hi);
+  letter-spacing:-.005em}
+.band h2 svg,.band h2 img{flex:none;display:block}
+.band .mk{width:40px;height:40px}
+.band .ld{font-size:20px;line-height:1.5;color:var(--b-hi);margin-top:18px;max-width:30em}
+.band ul{margin-top:18px;max-width:34em}
+.band li{padding-left:1.2em;position:relative}
+.band li+li{margin-top:8px}
+.band li::before{content:"–";position:absolute;left:0;color:var(--b-mu)}
+.band .st{margin-top:24px;font-size:15px;color:var(--b-mu)}
+.band a{color:var(--b-ac);text-decoration-color:color-mix(in srgb,var(--b-ac) 45%,transparent)}
+.band a:hover{text-decoration-color:var(--b-ac)}
+.band code{color:var(--b-hi);white-space:nowrap}
+.band kbd{color:var(--b-hi)}
+.vis figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--b-mu)}
+
+/* Glia: Tokyo Night, dark only, as the app and its page; the pixel astrocyte with its accent cell blinking like the
+   cursor; the state line in mono, like the app's status line */
+.b-glia{color-scheme:dark;--b-bg:#1a1b26;--b-hi:#c0caf5;--b-cp:#a7b0d6;--b-mu:#7e84a2;--b-ln:#44475a;--b-ac:#7aa2f7}
+.b-glia h2{font-weight:500}
+.b-glia .mk{width:44px;height:44px}
+.b-glia .mk .w{fill:var(--b-hi)}.b-glia .mk .c{fill:var(--b-ac);animation:bk 1.06s step-end infinite}
+.b-glia .st{font-family:var(--smono);font-size:13.5px;border-top:1px solid var(--b-ln);padding-top:10px}
+
+/* Tanycyte: Glia's look, by the system's light or dark; its lockup; the face's small mono capitals */
+.b-tany{--b-bg:#e1e2e7;--b-hi:#1a1b26;--b-cp:#3b3f52;--b-mu:#585c72;--b-ln:#c4c6d0;--b-ac:#2e5bb8}
+@media (prefers-color-scheme:dark){.b-tany{--b-bg:#16161e;--b-hi:#c0caf5;--b-cp:#a9b1d6;--b-mu:#7e84a2;--b-ln:#2f3346;
+  --b-ac:#7aa2f7}}
+.b-tany h2 img{width:249px;height:40px}
+.b-tany li{padding-left:0}.b-tany li::before{content:none}
+.b-tany .k{display:block;font:600 12px/1.6 var(--smono);letter-spacing:.06em;text-transform:uppercase;color:var(--b-hi)}
+.b-tany .st{font-family:var(--smono);font-size:13.5px}
+.b-tany .vis img{border:1px solid var(--b-ln);border-radius:8px}
+
+/* Importin: the violet dark of its page, dark only; the eight facets in the accent */
+.b-importin{color-scheme:dark;--b-bg:#13131b;--b-hi:#e9e7f2;--b-cp:#b2afc4;--b-mu:#8a879c;--b-ln:#2d2c3a;--b-ac:#97a2ff}
+.b-importin .mk path{fill:var(--b-ac);stroke:var(--b-ac);stroke-width:1.6;stroke-linejoin:round}
+.b-importin code{background:#1c1b26;padding:.08em .32em;border-radius:4px}
+
+/* Lemna: Still's paper by day and its warm dark by night; the line and the caret */
+.b-lemna{--b-bg:#f3f0e8;--b-hi:#46433d;--b-cp:#6b675f;--b-mu:#6b675f;--b-ln:#d9d4c8;--b-ac:#577446}
+@media (prefers-color-scheme:dark){.b-lemna{--b-bg:#1c1b18;--b-hi:#e2daca;--b-cp:#a69d8e;--b-mu:#a69d8e;--b-ln:#34312c;
+  --b-ac:#a2b88e}}
+.b-lemna .mk path{fill:var(--b-hi)}.b-lemna .mk rect{fill:var(--b-ac)}
+.b-lemna a{color:var(--b-hi);text-decoration-color:var(--b-ln)}
+.b-lemna a:hover{text-decoration-color:var(--b-hi)}
+.b-lemna .vis img{border-radius:12px}
+
+/* Moin Journal: Abendlicht, its paper by day and its ink-blue by night; the two pennants and the fan of pages */
+.b-moin{--b-bg:#f7f0ee;--b-hi:#192239;--b-cp:#5c6371;--b-mu:#5c6371;--b-ln:#dcd2cf;--b-ac:#a04967}
+@media (prefers-color-scheme:dark){.b-moin{--b-bg:#192239;--b-hi:#e6dddb;--b-cp:#979da9;--b-mu:#979da9;--b-ln:#343d50;
+  --b-ac:#cc7893}}
+.mm-p{fill:var(--b-cp)}.mm-l{fill:var(--b-hi)}.mm-r{fill:var(--b-ac)}
+.b-moin .big{display:block;width:min(100%,300px);height:auto;margin:0 auto}
+.b-moin .vis figcaption{text-align:center}
+
+/* how these pages are made (R1), the foot */
+.rules{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 56px;padding-top:64px}
+.rules h2{font-size:28px;line-height:1.2;font-weight:400;color:var(--hi)}
+.rules li+li{margin-top:6px}
+.foot{margin-top:64px;padding-top:24px;padding-bottom:48px;font-size:15px;color:var(--mu);
+  background:linear-gradient(var(--ln),var(--ln)) 40px 0/calc(100% - 80px) 1px no-repeat}
+.foot p+p{margin-top:4px}
+
+/* narrower than about 960 px the text column would fall under 300 px: one column, the visual under the text */
+@media (max-width:960px){.band>.wrap{grid-template-columns:minmax(0,1fr);gap:32px}.band .vis{max-width:720px}}
+@media (max-width:760px){
+  .wrap{padding-left:16px;padding-right:16px}
+  .top{padding-top:20px;font-size:19px}
+  h1{font-size:32px;margin-top:32px}
+  .lead{font-size:18px;margin-top:10px}
+  .hero{margin-top:18px}
+  .hero .hd{display:none}
+  .hero .hp{display:block}
+  .hero figcaption{padding:0 16px}
+  .projects{margin-top:40px}
+  .band{padding:48px 0 52px}
+  .band>.wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .band h2{font-size:28px}
+  .band .ld{font-size:18px}
+  .b-moin .big{width:200px}
+  .rules{grid-template-columns:minmax(0,1fr);gap:10px;padding-top:44px}
+  .rules h2{font-size:24px}
+  .foot{margin-top:44px;background-position:16px 0;background-size:calc(100% - 32px) 1px}
+}
+@media (prefers-reduced-motion:reduce){.b-glia .mk .c{animation:none}}
+
+/* ---------- the hero's drawing: shared, the loop's moments (data-step, set by site.js), then the two paints ---------- */
+.rt{display:block;width:100%;height:auto}
+.rt .p-glia{--c:var(--a-glia)}.rt .p-tany{--c:var(--a-tany)}.rt .p-lemna{--c:var(--a-lemna)}.rt .p-importin{--c:var(--a-importin)}.rt .p-moin{--c:var(--a-moin)}
+.rt .cell{--k:var(--c);transform-box:view-box;animation:br 17s ease-in-out infinite alternate}
+.rt .vk{animation:none}
+.rt .s0,.rt .s1,.rt .s2,.rt .s3{stop-color:var(--k)}
+.rt .nuw{animation:nu 21s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+.rt .ef{fill:none;stroke:var(--k);stroke-width:4.5;stroke-linecap:round}
+.rt .wf{fill:none;stroke:var(--ne);stroke-opacity:.55}.rt .wt{fill:var(--ne);fill-opacity:.55;stroke:var(--ne);stroke-opacity:.55}
+.rt .dm{fill:var(--c);fill-opacity:var(--df);stroke:var(--c);stroke-opacity:var(--ds);stroke-width:1.5}
+.rt .pb{fill:var(--pb);stroke:var(--c);stroke-opacity:.8}.rt .pt{fill:var(--c);stroke:var(--c);stroke-opacity:.5;stroke-width:.8}
+.rt .cur{fill:var(--c);animation:bk 1.06s step-end infinite}
+.rt .en{fill:none;stroke:var(--c);stroke-width:1.3;stroke-opacity:var(--es)}.rt .ei{fill:var(--c);fill-opacity:.06}
+.rt .pf{fill:var(--c);stroke:var(--c);stroke-width:1.6;stroke-linejoin:round}.rt .pw{fill:var(--c);opacity:0}
+.rt .lt{fill:var(--bg);stroke:var(--c);stroke-width:1.1;stroke-linejoin:round;transform-box:fill-box;transform-origin:center}
+.rt .sb{fill:var(--nf)}.rt .se{fill:none;stroke:var(--ne);stroke-opacity:.85}.rt .sp{fill:var(--bg);stroke:var(--mu);stroke-width:1.2;opacity:.75}
+.rt .yg{fill:var(--bg);stroke:var(--c);stroke-width:1.3}.rt .gy{opacity:0}
+.rt .ws{fill:none;stroke:var(--ne);stroke-width:1.2}.rt .w0{stop-color:var(--ne);stop-opacity:var(--wo)}.rt .w1{stop-color:var(--ne);stop-opacity:0}
+.rt .ap{fill:var(--bg);fill-opacity:.55;stroke:var(--ne)}.rt .ab{fill:var(--ne);stroke:var(--ne)}.rt .tl{fill:var(--mu)}.rt .tw{fill:var(--hi)}
+.rt .vw{fill:none;stroke:var(--ne);stroke-width:4}.rt .vl{fill:var(--ne);opacity:.3}.rt .vh{fill:none;stroke:var(--ne);stroke-width:5;opacity:.25}
+.rt .fb{fill:var(--fold);stroke:var(--ne)}.rt .ff{fill:var(--fold);stroke:var(--ne)}.rt .pp{fill:var(--pa);stroke:var(--ne);stroke-width:.8}
+.rt .cu{fill:none;stroke:var(--ne);stroke-width:1.3}.rt .sy{fill:none;stroke:var(--ne);stroke-dasharray:2 3}
+.rt .cd{fill:var(--bg);stroke:var(--c);stroke-width:1.2}.rt .cl{fill:var(--mu)}
+.rt .mi{fill:var(--hi);opacity:.8}.rt .ma{fill:var(--ca)}
+.rt .cm{fill:none;stroke:var(--c);stroke-width:3.4;stroke-linecap:round;stroke-dasharray:12 200;opacity:0}.rt .cg{stroke-width:8;stroke:var(--c)}
+.rt .gh{fill:none;stroke:var(--c);stroke-width:1.3;stroke-dasharray:1.2 2;opacity:0}
+.rt .nw .pp{stroke:var(--c);stroke-width:1.3}.rt .nw .dt{fill:var(--c)}.rt .wl{fill:var(--mu);transform-box:fill-box;transform-origin:left}
+.rt .tg{fill:var(--c);opacity:0}.rt .rp{fill:none;stroke:var(--c);stroke-width:1.6;opacity:0;transform-box:fill-box;transform-origin:center}
+.rt .lw{transform-box:fill-box;transform-origin:center}
+.rt text{font-family:var(--serif);stroke:var(--bg);stroke-width:3px;stroke-linejoin:round;paint-order:stroke}
+.rt .nm .n{font-size:16px;fill:var(--hi)}.rt .nm .d{font-size:12.5px;fill:var(--mu)}
+.rt .nm:hover .n,.rt .nm:focus-visible .n{text-decoration:underline}.rt .nm:focus-visible{outline:none}
+.rt .sm{font-size:11.5px;fill:var(--mu)}.rt .mo{font-family:var(--smono);font-size:11px}
+.rt .dt{font:8.5px var(--smono);fill:var(--mu);stroke:none}.rt .ct,.rt .ti{stroke:none}.rt .ct{fill:var(--hi)}
+.rt .wtl{font-size:15px;fill:var(--hi);stroke:none}.rt .cap{font-size:13.5px;fill:var(--hi);stroke-width:4px;opacity:0}
+@keyframes br{50%{transform:scale(1.012,.992) rotate(.3deg)}100%{transform:scale(.994,1.01) rotate(-.25deg)}}
+@keyframes nu{to{transform:translate(1px,-.6px) scale(1.03)}}
+@keyframes bk{50%{opacity:0}}
+.hero[data-step="1"] .k1,.hero[data-step="2"] .k2,.hero[data-step="3"] .k3,.hero[data-step="4"] .k4,.hero[data-step="5"] .k5{animation:cap 4s linear both}
+@keyframes cap{0%,6%{opacity:0}16%,86%{opacity:1}97%,100%{opacity:0}}
+.hero[data-step="1"] .dr{animation:dr 4s linear both}
+@keyframes dr{0%,12%{opacity:1}14%{opacity:.2}16%{opacity:.85}18%{opacity:.12}21%{opacity:.6}23%,62%{opacity:.07}65%{opacity:.5}67%{opacity:.2}70%,100%{opacity:1}}
+.hero[data-step="1"] .gh{animation:gh 4s linear both}
+@keyframes gh{0%,21%{opacity:0}27%,60%{opacity:.8}65%,100%{opacity:0}}
+.hero[data-step="1"] .c0{animation:cm .7s ease-out 2.6s both}
+.hero[data-step="1"] .sc{animation:sc 4s steps(8) both}
+@keyframes sc{to{transform:translateY(var(--s8))}}
+.hero[data-step="2"] .lt{animation:li 1s cubic-bezier(.45,0,.55,1) both,lb .5s ease-out forwards}
+@keyframes li{0%{transform:none;opacity:1}60%{transform:translate(var(--px),var(--py)) scale(.8);opacity:1}100%{transform:translate(var(--ix),var(--iy)) scale(.4);opacity:0}}
+@keyframes lb{0%{transform:translate(20px,0);opacity:0}100%{transform:none;opacity:1}}
+.hero[data-step="2"] .pw{animation:pw 4s linear both}
+@keyframes pw{0%,19%{opacity:0}25%{opacity:var(--pg)}32%,44%{opacity:0}50%{opacity:var(--pg)}57%,69%{opacity:0}75%{opacity:var(--pg)}82%,100%{opacity:0}}
+.hero[data-step="3"] .gy{animation:gy 2.2s linear both}
+@keyframes gy{0%{transform:translate(var(--x0),var(--y0));opacity:0}5%{opacity:1}20%{transform:translate(var(--x1),var(--y1))}32%{transform:translate(var(--x2),var(--y2))}44%{transform:translate(var(--x3),var(--y3))}56%{transform:translate(var(--x4),var(--y4))}68%{transform:translate(var(--x5),var(--y5))}80%{transform:translate(var(--x6),var(--y6))}94%{transform:translate(var(--x7),var(--y7));opacity:1}100%{transform:translate(var(--x7),var(--y7));opacity:0}}
+.hero[data-step="3"] .tg{animation:tg 4s linear both}
+@keyframes tg{0%,30%{opacity:0}42%{opacity:var(--tgo)}60%,100%{opacity:0}}
+.rt .card,.rt .cc,.rt .tx,.rt .nw{transition:opacity .6s}
+.hero[data-step="1"] .card,.hero[data-step="2"] .card,.hero[data-step="1"] .cc,.hero[data-step="2"] .cc{opacity:0}
+.hero[data-step="3"] .card{animation:ca 4s linear both}
+.hero[data-step="3"] .cc{animation:cc 4s linear both}
+@keyframes ca{0%,24%{opacity:0}36%,100%{opacity:1}}
+@keyframes cc{0%,74%{opacity:0}84%,100%{opacity:1}}
+.hero[data-step="4"] .lw{animation:lw 4s ease-out both}
+@keyframes lw{0%{opacity:1}4%{opacity:0;transform:translateY(-6px) scale(.94)}18%,100%{opacity:1;transform:none}}
+.rt .tx{transform:translate(var(--sx),var(--sy))}
+.hero[data-step="1"] .tx,.hero[data-step="2"] .tx,.hero[data-step="3"] .tx{opacity:0}
+.hero[data-step="4"] .tx{animation:tx 4s linear both}
+@keyframes tx{0%,17%{transform:translate(var(--gx),0)}35%,42%{transform:none;animation-timing-function:ease-in-out}45%{opacity:1}49%{opacity:.5}54%{opacity:1}68%,100%{transform:translate(var(--sx),var(--sy))}}
+.hero[data-step="4"] .rp{animation:rp 4s linear both}
+@keyframes rp{0%,44%{opacity:0;transform:scale(.3)}48%{opacity:1}66%,100%{opacity:0;transform:scale(1.6)}}
+.rt .nw{transform-box:fill-box;transform-origin:center}
+.hero[data-step="1"] .nw,.hero[data-step="2"] .nw,.hero[data-step="3"] .nw,.hero[data-step="4"] .nw{opacity:0}
+.hero[data-step="5"] .nw{animation:nw 4s both}
+@keyframes nw{0%{opacity:0;transform:translate(-34px,-58px) rotate(-6deg)}8%,40%{opacity:1;transform:translate(-34px,-58px) rotate(-6deg);animation-timing-function:cubic-bezier(.45,0,.85,.55)}62%{transform:translate(0,3px) rotate(0)}66%{transform:translate(0,-2px)}70%,100%{transform:none;opacity:1}}
+.hero[data-step="5"] .wl{animation:wl .4s ease-out both}
+@keyframes wl{from{transform:scaleX(0)}}
+.hero[data-step="5"] .c3{animation:cm .8s ease-in-out 3s both}
+@keyframes cm{0%{stroke-dashoffset:14;opacity:0}8%,88%{opacity:1}100%{stroke-dashoffset:-100;opacity:0}}
+.hero:has(.pz input:checked) .rt *{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.rt *{animation:none!important;transition:none!important}.hero .pz{display:none}}
+/* day paint: the drawing as a stain */
+.rt .far{fill:#8a8a92;opacity:.07}
+.rt .bl{display:none}
+.rt .ha{fill:none;stroke:#fff;stroke-width:5;opacity:.8}
+.rt .pr{fill:var(--k);fill-opacity:.6}
+.rt .fi{fill:var(--k);fill-opacity:.48}
+.rt .lm{fill:var(--k);fill-opacity:.07}
+.rt .s0{stop-opacity:.15}.rt .s1{stop-opacity:.17}.rt .s2{stop-opacity:.36}.rt .s3{stop-opacity:.6}
+.rt .mb{fill:none;stroke:var(--k);stroke-opacity:.95;stroke-width:1.4}
+.rt .or{fill:var(--k);fill-opacity:.6}
+.rt .nu{fill:var(--k);fill-opacity:.18;stroke:var(--k);stroke-opacity:.8;stroke-width:1.2}
+.rt .nl{fill:var(--k);opacity:.85}
+.rt .ef{stroke-opacity:.62}
+.rt{--pg:.6;--tgo:.5;--wo:.09;--df:.06;--ds:.6;--es:.9}
+.rt .cm{stroke:color-mix(in srgb,var(--c) 60%,#000)}.rt .cg{stroke:var(--c)}
+/* night paint: the drawing in fluorescence */
+@media (prefers-color-scheme:dark){
+.rt .far{fill:#73738a;opacity:.17}
+.rt .bl{display:inline;fill:var(--k);opacity:.24}
+.rt .ha{display:none}
+.rt .pr{fill:var(--k);fill-opacity:.52}
+.rt .fi{fill:var(--k);fill-opacity:.42}
+.rt .lm{fill:var(--k);fill-opacity:.1}
+.rt .s0{stop-opacity:.4}.rt .s1{stop-opacity:.28}.rt .s2{stop-opacity:.6}.rt .s3{stop-opacity:.22}
+.rt .mb{fill:none;stroke:var(--k);stroke-opacity:.7;stroke-width:1.1}
+.rt .or{fill:color-mix(in srgb,var(--k) 50%,#fff);fill-opacity:.6}
+.rt .nu{fill:#101014;fill-opacity:.3;stroke:var(--k);stroke-opacity:.32;stroke-width:1}
+.rt .nl{fill:color-mix(in srgb,var(--k) 55%,#fff);opacity:.5}
+.rt .ef{stroke-opacity:.55}
+.rt .cm{stroke:color-mix(in srgb,var(--c) 45%,#fff)}
+.rt{--pg:.9;--tgo:.8;--wo:.16;--df:.07;--ds:.5;--es:.75}
+}
