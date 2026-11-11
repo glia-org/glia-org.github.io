@@ -44,15 +44,12 @@
 .gl-pane.gl-specimen{background:transparent;min-height:22em;cursor:crosshair;justify-content:flex-end}
 .gl-specimen>.gl-pf,.gl-specimen>.gl-pb{display:none}
 .gl-gl .gl-specimen>.gl-pf,.gl-gl .gl-specimen>.gl-pb{display:block}
-.gl-specimen .gl-nogl{display:none}
-.gl-nogl .gl-specimen .gl-nogl{display:block}
 /* the specimen's scale bar, 20 cells (about 20 µm of astrocyte); glia.js sets its width as the view zooms */
 .gl-sb{display:none;position:absolute;right:2ch;bottom:1.4em;padding:.2em 0 .45em;border-bottom:2px solid var(--mid);
   background:var(--bg);color:var(--mid);font-size:13px;line-height:1;text-align:center;white-space:nowrap;pointer-events:none}
 
 .gl-sub{font-size:1.13em;color:var(--hi);max-width:64ch}
 .gl-pane p{max-width:68ch}
-.gl-note{color:var(--low);font-size:13px;max-width:72ch}
 .gl-ls{display:flex;flex-direction:column;gap:.35em}
 .gl-ls li{padding-left:2ch;position:relative;max-width:68ch}
 .gl-ls li::before{content:"-";position:absolute;left:0;color:var(--low)}
@@ -180,7 +177,7 @@
 .gl-asl .gl-sp{flex:1}
 .b-glia figcaption{font-size:13px;color:var(--low);margin-top:.6em;max-width:90ch}
 
-/* ---------- the status line: the brand in the accent, the state ---------- */
+/* ---------- the status line: the brand in the accent (the state is in the band's banner) ---------- */
 .gl-sl{position:relative;z-index:1;height:2em;display:flex;align-items:center;gap:2.4ch;background:var(--raised);color:var(--low);
   font-size:13.5px;white-space:nowrap;overflow:hidden;padding-right:1.5ch}
 .gl-sl .gl-brand{align-self:stretch;display:flex;align-items:center;padding:0 1.6ch;background:var(--accent);color:var(--bg);

@@ -1,6 +1,6 @@
 /* Importin's band: a miniature of Importin's page (importin, commit 626fff9, v0.1.1, site/): dark only, the violet
    night of its page (C2), Literata for prose and headlines, code in the system's monospaced face; its header (the mark
-   K7 beside the wordmark, the links at the right), its lead (the sentence left, the copy right, on one baseline), its
+   K7 beside the wordmark; its links are in the band's banner), its lead (the sentence left, the copy right, on one baseline), its
    hero (P1): the pore, inline SVG with its CSS keyframes, four letters carried in through it on a 10 s loop, nothing
    moving outward, and the box under it that pauses them; then a section in the page's rhythm (a hairline, the
    headline left, the facts right). Importin's site.js (the play layer and the rising letters) is not ported: it draws
@@ -21,13 +21,11 @@
   border-radius:4px;overflow-wrap:anywhere}
 
 .im-wrap{max-width:1200px;margin:0 auto;padding:0 var(--gut) 88px}
-/* the header: the mark beside the wordmark, the links at the right (on the page it stays at the top; here it does not) */
+/* the header: the mark beside the wordmark (on the page it stays at the top; here it does not) */
 .im-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:40px;padding-bottom:28px}
 .im-brand{display:flex;align-items:center;gap:12px;font-size:22px;line-height:1;font-weight:400;color:var(--text);
   letter-spacing:.01em}
 .im-brand svg{display:block;color:var(--accent)}
-.im-top nav{display:flex;flex-wrap:wrap;gap:6px 24px;font-size:16px;justify-content:flex-end}
-.im-top nav span{color:var(--muted)}
 /* lead */
 .im-lead{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px 56px;align-items:end;padding:36px 0 40px}
 .im-h{font-size:52px;line-height:1.1;font-weight:380;color:var(--text);letter-spacing:-.012em;max-width:12ch;text-wrap:balance}
@@ -91,7 +89,6 @@
   .b-importin{--gut:16px;font-size:17px}
   .im-wrap{padding-bottom:56px}
   .im-top{padding-top:28px;padding-bottom:18px;align-items:flex-start}
-  .im-top nav{gap:4px 18px}
   .im-h{font-size:36px}
   .im-lead{padding:20px 0 28px;gap:18px}
   .im-lead-copy>p:first-child{font-size:19px}

@@ -4,14 +4,15 @@ The page of the glia-org organisation at `https://glia-org.github.io/`: software
 wordmark and two sentences, a drawing of the five projects as one tissue, a band per project (Glia, Tanycyte,
 Importin, Lemna, Moin Journal), the rules below and a foot. Each band is a miniature of that project's own page: its
 palette, its type and fonts, its spacing and its hero, live where the project has one; the bands need not agree with
-one another. Plain static files, served by GitHub Pages.
+one another. Each band opens with the same banner in this page's own style (rule 9). Plain static files, served by
+GitHub Pages.
 
 ## Files
 
 | path | what |
 |---|---|
 | `index.html` | the page; the hero's two drawings are inline SVG between `<!-- hero:desktop -->` and `<!-- hero:phone -->` markers; each band follows an HTML comment that names the project's repository and commit it was taken from |
-| `assets/site.css` | the frame's look: the page, the bands' container (`content-visibility: auto`, so a band off screen waits with its fonts and pictures), then the hero's keyframes and its day and night paints |
+| `assets/site.css` | the frame's look: the page, the bands' container (`content-visibility: auto`, so a band off screen waits with its fonts and pictures), the bands' banners, then the hero's keyframes and its day and night paints |
 | `assets/site.js` | the hero's loop only (524 bytes): sets `data-step` 1 to 6 on the figure on a 4-4-4-4-4-3 s clock; holds while the pause box is ticked; does nothing under reduced motion |
 | `assets/bands/<project>.css` | each band's look, one file per band (`glia`, `tanycyte`, `importin`, `lemna`, `moin`); ported from the project's page with its classes, ids and keyframes prefixed (`gl-`, `ty-`, `im-`, `lm-`, `mj-`), its page-wide rules scoped to the band |
 | `assets/bands/load.js` | fetches a band's script (its `data-js`) once the band is within one screen of the view |
@@ -30,12 +31,13 @@ one another. Plain static files, served by GitHub Pages.
 1. **Plain static files.** No build step, no framework, no package manager.
 2. **No third-party requests.** The font is self-hosted; no CDN, analytics, cookies or embeds. External URLs appear
    only as links, plus the canonical URL. `checks/site.py` enforces this.
-3. **Every claim is true of the build** the band's state line names; numbers say where they were measured. No
-   superlatives, no exclamation marks, no slogans. Each picture says what it is: a screenshot with its date, or a
-   drawing.
+3. **Every claim is true of the build** the band's banner names; numbers say where they were measured. No
+   superlatives, no exclamation marks, no slogans; plain sentences with a verb, about 20 words at most. A caption says
+   what its picture means; what the picture is (a screenshot and its date, or a drawing) and how the band is made go
+   in the HTML comment before the band and in the table below, not on the page.
 4. **Complete without JavaScript.** Without scripts the hero shows its resting state (the brief beside Glia, the
    written line in the app, today's page in the folder); the membranes still breathe and the cursors blink. Each band
-   shows a still: Glia the PNG of its drawn window at rest, and its specimen says it draws nothing; Lemna its stills
+   shows a still: Glia the PNG of its drawn window at rest, and its specimen pane stays empty; Lemna its stills
    (by day and by night); Tanycyte its screenshot; Importin's pore and Moin Journal's folder are CSS and run. Under
    `prefers-reduced-motion` nothing moves: no step, no keyframes, no blinking, no pause box; Glia's field is drawn
    once and its window stays at rest; Lemna shows its stills; Importin's letters stop where they are; Moin Journal's
@@ -46,22 +48,29 @@ one another. Plain static files, served by GitHub Pages.
 6. **Budget.** As transferred (text gzipped, as GitHub Pages serves it; of a light/dark pair of pictures the larger),
    checked by `checks/site.py`: what every load fetches (the page, the stylesheets, the two small scripts, Literata,
    the icons) at most 160 kB, and the whole page with every band's fonts, pictures and scripts at most 1.1 MB. On
-   2026-11-10 `checks/site.py` counts 131.5 kB for every load (the page 33.7 kB, the six stylesheets 19.5 kB, the font
-   75.0 kB) and 562.4 kB for the whole page, counting each band's stills too. Measured in headless Chrome at
+   2026-11-11 `checks/site.py` counts 134.3 kB for every load (the page 36.0 kB, the six stylesheets 19.9 kB, the font
+   75.0 kB) and 565.2 kB for the whole page, counting each band's stills too. Measured in headless Chrome at
    1400 × 1000 px on 2026-11-10: the first screen fetches 393.9 kB in 15 requests, Cascadia Code (218.8 kB) among
    them, since the top of Glia's band shows on that screen, with Glia's script (13.7 kB) and Tanycyte's screenshot
    (28.0 kB), which the browser fetches a screen ahead; the page with every band visited 409.6 kB in 16 requests
    (Lemna's script, 15.6 kB, more). Lemna's Latin file (224.2 kB) comes only for a character typed into its box that
    the subset lacks.
-7. **One place for Glia's page.** Glia's page is not published, so its band has no link. An HTML comment at Glia's
-   status line holds the link (`href="/glia/"`) and where it goes back once the page is published; it is the only
-   place for that path.
+7. **One place for Glia's page.** Glia's page is not published, so its band has no link. An HTML comment in the
+   links slot of Glia's banner holds the link (`href="/glia/"`) and where it goes once the page is published; it is
+   the only place for that path.
 8. **A band is its project's page in miniature.** Its look, type, rhythm and hero come from the project's own page
    at the commit its comment names (Tanycyte and Moin Journal have no page: from their face, brand and documents).
    The port keeps the page's code and prefixes its names; nothing is left on `window`. A live piece runs only while
    its band is in view (`IntersectionObserver`) and the tab is shown; Glia's WebGL context is made when its band first
    comes into the upper four fifths of the window. Where the project's page has a pause, the band has it: a click on
    Glia's window, Importin's box; Moin Journal's folder has one too. No sound.
+9. **One banner per band.** Every band opens with the same strip: the project's mark (30 px) and name, its state,
+   its links. Its structure, spacing and type are this page's (Literata at 15 px, one hairline under it); its colours
+   are the band's own text, muted, line and accent. The state is one of `in development`, `pre-release v…` or
+   `released v…`, with the platform. Links (Site, Source, Releases) appear only where they are public; a private
+   repository reads `source private`, never a dead link. What the banner says is not said again in the band below.
+   Plain HTML and CSS; nothing in it moves. At 960 px and below the name's column narrows; at 760 px and below the
+   state and the links go under the name.
 
 ## Preview
 
@@ -116,8 +125,9 @@ never fetches the larger file.
 | `assets/bands/lemna.css`, `assets/bands/lemna.js`, Lemna's band (header, the demo's stage) | lemna 2a325d6: `site/assets/site.css`, `site/index.html`, `site/assets/site.js` (last changed in ea059ad); names prefixed `lm-`; the sound (clicks, bed, their switches) and the Ambience tiles left out | Apache 2.0 |
 | `assets/img/lemna/still-day.png`, `still-night.png` | lemna `site/assets/img/demo-day.png` and `demo-night.png` unchanged (12c6917, the same at 2a325d6), cut from the app's own offscreen renders of a build after v0.1.0 | Apache 2.0 |
 | `assets/fonts/lemna/literata-latin.woff2`, `OFL.txt` | lemna 2a325d6 `site/assets/fonts/`, unmodified (the file importin's page serves) | OFL 1.1 |
-| `assets/bands/moin.css`, Moin Journal's band | written here from moin-journal 2de4f05: `assets/brand/abendlicht.json` (the palette), `assets/brand/logo/mark-light.svg` (the mark's paths, its colours from the palette), `README.md`, `docs/mac-app.md`, the design spec's store layout (5.1); the folder's names are ULIDs of the dates shown | the brand files CC0 1.0 (moin-journal's `ATTRIBUTION.md`) |
-| Importin's eight facets, Lemna's line and caret (the marks in their bands' headers) | importin 626fff9 `site/index.html` (the header's mark, K7), lemna 2a325d6 `site/index.html` (the brand's mark, `site/assets/img/mark-M3.svg`) | Apache 2.0 |
+| Glia's astrocyte and Tanycyte's fan (the marks in their banners) | Glia's: the cells of the lockup in Glia's band (glia.github.io 1e02732 `index.html`, the same cells as its `assets/favicon.svg`), without the blink; Tanycyte's: the fan of `assets/img/tanycyte/lockup-*.svg` (tanycyte `assets/logo/out/`, f03dc5f) with its squircle clip, inline, its two colours taken from the band's palette | Apache 2.0 (Glia), MIT (Tanycyte) |
+| `assets/bands/moin.css`, Moin Journal's band | written here from moin-journal 2de4f05: `assets/brand/abendlicht.json` (the palette), `assets/brand/logo/mark-light.svg` (the mark's paths in its heading and its banner, its colours from the palette), `README.md`, `docs/mac-app.md`, the design spec's store layout (5.1); the folder's names are ULIDs of the dates shown | the brand files CC0 1.0 (moin-journal's `ATTRIBUTION.md`) |
+| Importin's eight facets, Lemna's line and caret (the marks in their bands' banners and headers) | importin 626fff9 `site/index.html` (the header's mark, K7), lemna 2a325d6 `site/index.html` (the brand's mark, `site/assets/img/mark-M3.svg`) | Apache 2.0 |
 
 Palettes: Glia, Tokyo Night as on Glia's page (dark only); Tanycyte, Tokyo Night Day's ground by day and Tokyo
 Night's darkest by night; Importin, its page's violet dark (dark only); Lemna, its page's paper and warm dark; Moin

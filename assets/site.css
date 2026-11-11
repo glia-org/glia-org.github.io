@@ -51,10 +51,29 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
 .projects{margin-top:56px}
 .band{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 
+/* a band's banner, the same in all five: the project's mark and name, its state, its links (or "source private").
+   Its structure, spacing and type are this page's (Literata at the foot's size, one hairline under the strip); its
+   colours are the band's own, mapped below from each band's palette: text, muted, line, accent. Nothing in it moves */
+.bn{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:4px 56px;align-items:center;
+  max-width:1200px;margin:0 auto;padding:16px 40px 15px;font:400 15px/1.5 Literata,Charter,"Iowan Old Style",Georgia,serif;
+  color:var(--bn-mu);background:linear-gradient(var(--bn-ln),var(--bn-ln)) 40px 100%/calc(100% - 80px) 1px no-repeat}
+.bn p{margin:0}
+.bn-n{display:flex;align-items:center;gap:12px;color:var(--bn-tx)}
+.bn-mk{flex:none;display:block;width:30px;height:30px;fill:currentColor}
+.bn-mk .bn-a{fill:var(--bn-ac)}.bn-mk .bn-u{fill:var(--bn-mu)}.bn-mk.bn-ac{color:var(--bn-ac)}
+.bn-m{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 32px;align-items:baseline}
+.bn-l{white-space:nowrap}
+.bn .bn-l a{color:var(--bn-ac);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.b-glia .bn,.b-tany .bn{--bn-tx:var(--hi);--bn-mu:var(--low);--bn-ln:var(--line);--bn-ac:var(--accent)}
+.b-importin .bn{--bn-tx:var(--text);--bn-mu:var(--muted);--bn-ln:var(--line);--bn-ac:var(--accent)}
+.b-lemna .bn{--bn-tx:var(--text);--bn-mu:var(--copy);--bn-ln:var(--line);--bn-ac:var(--accent)}
+.b-moin .bn{--bn-tx:var(--ink);--bn-mu:var(--ink2);--bn-ln:var(--rule);--bn-ac:var(--accent)}
+@media (max-width:960px){.bn{grid-template-columns:minmax(0,3fr) minmax(0,9fr);column-gap:32px}}
+
 /* how these pages are made (R1), the foot */
 .rules{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:16px 56px;padding-top:64px}
 .rules h2{font-size:28px;line-height:1.2;font-weight:400;color:var(--hi)}
-.rules li+li{margin-top:6px}
+.rules p{max-width:38em}
 .foot{margin-top:64px;padding-top:24px;padding-bottom:48px;font-size:15px;color:var(--mu);
   background:linear-gradient(var(--ln),var(--ln)) 40px 0/calc(100% - 80px) 1px no-repeat}
 .foot p+p{margin-top:4px}
@@ -69,6 +88,9 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
   .hero .hp{display:block}
   .hero figcaption{padding:0 16px}
   .projects{margin-top:40px}
+  .bn{grid-template-columns:minmax(0,1fr);padding:14px 16px 12px;background-position:16px 100%;
+    background-size:calc(100% - 32px) 1px}
+  .bn-m{grid-template-columns:minmax(0,1fr)}
   .rules{grid-template-columns:minmax(0,1fr);gap:10px;padding-top:44px}
   .rules h2{font-size:24px}
   .foot{margin-top:44px;background-position:16px 0;background-size:calc(100% - 32px) 1px}

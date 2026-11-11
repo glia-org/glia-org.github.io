@@ -19,13 +19,12 @@
 .b-tany code{color:var(--hi)}
 
 .ty-wrap{max-width:1200px;margin:0 auto;padding:44px 40px 0}
-/* the top line: the lockup at the left (Tanycyte's face shows the date there), the state at the right, a hairline */
+/* the top line: the lockup at the left (Tanycyte's face shows the date there), a hairline; the state is in the
+   band's banner */
 .ty-top{display:flex;align-items:center;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-bottom:16px;
   border-bottom:1px solid var(--line)}
 .ty-top h2{margin:0;font-weight:400}
 .ty-top h2 img{display:block;width:249px;height:40px}
-.ty-st{font:13px/16px var(--mono);color:var(--low)}
-.ty-st b{font-weight:600;color:var(--hi)}
 .ty-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:32px 56px;align-items:start;padding:30px 0 40px}
 /* a section's head: small mono capitals, as LIBRARY on the face */
 .ty-k{display:block;font:600 12px/16px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--hi)}

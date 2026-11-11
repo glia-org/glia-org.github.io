@@ -26,7 +26,6 @@
 .mj-ld{font-size:21px;line-height:1.5;color:var(--ink);margin-top:20px;max-width:28em}
 .mj-facts{margin-top:22px;max-width:34em;border-top:1px solid var(--rule)}
 .mj-facts li{padding:10px 0;border-bottom:1px solid var(--rule)}
-.mj-st{margin-top:20px;font:14px/1.5 var(--ui);color:var(--ink2);letter-spacing:.01em}
 
 /* the drawing: an entry above the folder; the folder as the Mac lists it */
 .mj-scene{position:relative;padding-top:150px;font:14px/1.45 var(--ui);color:var(--ink)}
