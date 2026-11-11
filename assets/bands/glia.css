@@ -178,12 +178,6 @@
 .b-glia figcaption{font-size:13px;color:var(--low);margin-top:.6em;max-width:90ch}
 
 /* ---------- the status line: the brand in the accent (the state is in the band's banner) ---------- */
-.gl-sl{position:relative;z-index:1;height:2em;display:flex;align-items:center;gap:2.4ch;background:var(--raised);color:var(--low);
-  font-size:13.5px;white-space:nowrap;overflow:hidden;padding-right:1.5ch}
-.gl-sl .gl-brand{align-self:stretch;display:flex;align-items:center;padding:0 1.6ch;background:var(--accent);color:var(--bg);
-  font-weight:600}
-.gl-sl .gl-sp{flex:1}
-.gl-sl b{color:var(--hi);font-weight:400}
 
 @media (max-width:760px){
   .b-glia{font-size:14px}
@@ -192,6 +186,5 @@
   .gl-pane{padding:1.5em 2ch 1.3em}
   .gl-pane.gl-specimen{min-height:20em}
   .gl-lk{width:177px;height:50px}
-  .gl-sl .gl-wide{display:none}
 }
 @media (prefers-reduced-motion:reduce){.gl-lk .gl-c{animation:none}.gl-app,.gl-app *{transition:none}}

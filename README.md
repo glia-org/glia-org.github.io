@@ -64,7 +64,7 @@ GitHub Pages.
    its band is in view (`IntersectionObserver`) and the tab is shown; Glia's WebGL context is made when its band first
    comes into the upper four fifths of the window. Where the project's page has a pause, the band has it: a click on
    Glia's window, Importin's box; Moin Journal's folder has one too. No sound.
-9. **One banner per band.** Every band opens with the same strip: the project's mark (30 px) and name, its state,
+9. **One banner per band.** Every band opens with the same strip: the project's name, its state,
    its links. Its structure, spacing and type are this page's (Literata at 15 px, one hairline under it); its colours
    are the band's own text, muted, line and accent. The state is one of `in development`, `pre-release v…` or
    `released v…`, with the platform. Links (Site, Source, Releases) appear only where they are public; a private
@@ -125,9 +125,9 @@ never fetches the larger file.
 | `assets/bands/lemna.css`, `assets/bands/lemna.js`, Lemna's band (header, the demo's stage) | lemna 2a325d6: `site/assets/site.css`, `site/index.html`, `site/assets/site.js` (last changed in ea059ad); names prefixed `lm-`; the sound (clicks, bed, their switches) and the Ambience tiles left out | Apache 2.0 |
 | `assets/img/lemna/still-day.png`, `still-night.png` | lemna `site/assets/img/demo-day.png` and `demo-night.png` unchanged (12c6917, the same at 2a325d6), cut from the app's own offscreen renders of a build after v0.1.0 | Apache 2.0 |
 | `assets/fonts/lemna/literata-latin.woff2`, `OFL.txt` | lemna 2a325d6 `site/assets/fonts/`, unmodified (the file importin's page serves) | OFL 1.1 |
-| Glia's astrocyte and Tanycyte's fan (the marks in their banners) | Glia's: the cells of the lockup in Glia's band (glia.github.io 1e02732 `index.html`, the same cells as its `assets/favicon.svg`), without the blink; Tanycyte's: the fan of `assets/img/tanycyte/lockup-*.svg` (tanycyte `assets/logo/out/`, f03dc5f) with its squircle clip, inline, its two colours taken from the band's palette | Apache 2.0 (Glia), MIT (Tanycyte) |
-| `assets/bands/moin.css`, Moin Journal's band | written here from moin-journal 2de4f05: `assets/brand/abendlicht.json` (the palette), `assets/brand/logo/mark-light.svg` (the mark's paths in its heading and its banner, its colours from the palette), `README.md`, `docs/mac-app.md`, the design spec's store layout (5.1); the folder's names are ULIDs of the dates shown | the brand files CC0 1.0 (moin-journal's `ATTRIBUTION.md`) |
-| Importin's eight facets, Lemna's line and caret (the marks in their bands' banners and headers) | importin 626fff9 `site/index.html` (the header's mark, K7), lemna 2a325d6 `site/index.html` (the brand's mark, `site/assets/img/mark-M3.svg`) | Apache 2.0 |
+| Glia's astrocyte and Tanycyte's fan (the marks in their bands' headings) | Glia's: the cells of the lockup in Glia's band (glia.github.io 1e02732 `index.html`, the same cells as its `assets/favicon.svg`), without the blink; Tanycyte's: the fan of `assets/img/tanycyte/lockup-*.svg` (tanycyte `assets/logo/out/`, f03dc5f) with its squircle clip, inline, its two colours taken from the band's palette | Apache 2.0 (Glia), MIT (Tanycyte) |
+| `assets/bands/moin.css`, Moin Journal's band | written here from moin-journal 2de4f05: `assets/brand/abendlicht.json` (the palette), `assets/brand/logo/mark-light.svg` (the mark's paths in its heading, its colours from the palette), `README.md`, `docs/mac-app.md`, the design spec's store layout (5.1); the folder's names are ULIDs of the dates shown | the brand files CC0 1.0 (moin-journal's `ATTRIBUTION.md`) |
+| Importin's eight facets, Lemna's line and caret (the marks in their bands' headers) | importin 626fff9 `site/index.html` (the header's mark, K7), lemna 2a325d6 `site/index.html` (the brand's mark, `site/assets/img/mark-M3.svg`) | Apache 2.0 |
 
 Palettes: Glia, Tokyo Night as on Glia's page (dark only); Tanycyte, Tokyo Night Day's ground by day and Tokyo
 Night's darkest by night; Importin, its page's violet dark (dark only); Lemna, its page's paper and warm dark; Moin

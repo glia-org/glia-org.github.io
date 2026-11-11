@@ -51,7 +51,7 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
 .projects{margin-top:56px}
 .band{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 
-/* a band's banner, the same in all five: the project's mark and name, its state, its links (or "source private").
+/* a band's banner, the same in all five: the project's name, its state, its links (or "source private").
    Its structure, spacing and type are this page's (Literata at the foot's size); its colours are the band's own, mapped
    below from each band's palette: text, muted, line, accent, and the band's raised surface as the strip's ground. The
    strip runs the full width with a hairline above and below, so it also separates one project from the one before.
@@ -60,9 +60,7 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
   padding:18px max(40px,calc(50% - 560px)) 17px;font:400 15px/1.5 Literata,Charter,"Iowan Old Style",Georgia,serif;
   color:var(--bn-mu);background:var(--bn-bg);border-top:1px solid var(--bn-ln);border-bottom:1px solid var(--bn-ln)}
 .bn p{margin:0}
-.bn-n{display:flex;align-items:center;gap:12px;color:var(--bn-tx)}
-.bn-mk{flex:none;display:block;width:30px;height:30px;fill:currentColor}
-.bn-mk .bn-a{fill:var(--bn-ac)}.bn-mk .bn-u{fill:var(--bn-mu)}.bn-mk.bn-ac{color:var(--bn-ac)}
+.bn-n{color:var(--bn-tx)}
 .bn-m{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 32px;align-items:baseline}
 .bn-l{white-space:nowrap}
 .bn .bn-l a{color:var(--bn-ac);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
