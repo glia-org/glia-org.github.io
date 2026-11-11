@@ -364,7 +364,7 @@ def build(L, uid, seed=7):
 
 ARIA = ('Glia, a Mac app, drawn as a window holding an astrocyte and terminal panes for shells and agents, each linked to a '
         'remote host outside; Importin, a pore through which mail enters one agent; Tanycyte, whose long process reaches the '
-        'night’s stream and brings a brief into Glia; Lemna, a leaf on the surface above any app; Moin Journal, beside a folder '
+        'night’s stream and brings back a brief in the morning; Lemna, a leaf on the surface above any app; Moin Journal, beside a folder '
         'of dated pages.')
 
 
