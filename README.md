@@ -68,7 +68,7 @@ GitHub Pages.
    its links. Its structure, spacing and type are this page's (Literata at 15 px, one hairline under it); its colours
    are the band's own text, muted, line and accent. The state is one of `in development`, `pre-release v…` or
    `released v…`, with the platform. Links (Site, Source, Releases) appear only where they are public; a private
-   repository reads `source private`, never a dead link. What the banner says is not said again in the band below.
+   repository reads `release pending`, never a dead link. What the banner says is not said again in the band below.
    Plain HTML and CSS; nothing in it moves. At 960 px and below the name's column narrows; at 760 px and below the
    state and the links go under the name.
 

@@ -51,7 +51,7 @@ h1{font-size:46px;line-height:1.12;font-weight:400;color:var(--hi);letter-spacin
 .projects{margin-top:56px}
 .band{content-visibility:auto;contain-intrinsic-size:auto 1100px}
 
-/* a band's banner, the same in all five: the project's name, its state, its links (or "source private").
+/* a band's banner, the same in all five: the project's name, its state, its links (or "release pending").
    Its structure, spacing and type are this page's (Literata at the foot's size); its colours are the band's own, mapped
    below from each band's palette: text, muted, line, accent, and the band's raised surface as the strip's ground. The
    strip runs the full width with a hairline above and below, so it also separates one project from the one before.
