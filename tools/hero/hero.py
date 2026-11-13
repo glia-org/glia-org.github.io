@@ -75,8 +75,8 @@ def bars(x, y, widths, h=2.6, gap=3.2):
     return d, x - gap
 
 
-CAPS = ['The link drops; the session stays.', 'Mail comes in; nothing goes out.', 'The night becomes a brief.',
-        'Summoned, written, dropped into the app.', 'Today’s entry, filed in your folder.']
+CAPS = ['The link drops; the session stays.', 'Mail comes in; nothing goes out.', 'The night’s work arrives as one brief.',
+        'You write over the app; the text goes in.', 'Today’s entry lands in your folder.']
 PAT = [[14, 8, 10], [9, 16], [20, 6], [11, 7, 9]]
 
 
@@ -141,7 +141,7 @@ def build(L, uid, seed=7):
                     for k in range(L['n_part']))
     g.append(f'<g class="st" mask="url(#{uid}sm)"><path class="sb" d="{rel(top + bot[::-1])}"/>'
              f'<path class="se" d="{rel(top, False)}{rel(bot, False)}"/><g class="sp">{parts}</g></g>')
-    lab.append(small(*L['stream_lab'], 'the night: sessions, commits, papers'))
+    lab.append(small(*L['stream_lab'], 'overnight: agents, commits, papers'))
 
     # ------------------------------------------------ Lemna's water and the app beneath it
     wy_, wx0, wx1 = L['water']
@@ -363,8 +363,8 @@ def build(L, uid, seed=7):
 
 
 ARIA = ('Glia, a Mac app, drawn as a window holding an astrocyte and terminal panes for shells and agents, each linked to a '
-        'remote host outside; Importin, a pore through which mail enters one agent; Tanycyte, whose long process reaches the '
-        'night’s stream and brings back a brief in the morning; Lemna, a leaf on the surface above any app; Moin Journal, beside a folder '
+        'remote host outside; Importin, a pore through which mail enters one agent; Tanycyte, a cell whose long arm reaches into the '
+        'night’s work and brings back a brief in the morning; Lemna, a leaf on the surface above any app; Moin Journal, beside a folder '
         'of dated pages.')
 
 
@@ -392,9 +392,9 @@ LAYOUTS = {
         moin=(870, 436), moin_sc=1, folder=(998, 408, 108, 70), folder_lab=(1114, 456),
         env_r=40, pore_deg=0, pore_k=1.0,
         letters=[(664, 208, .4, 2.0), (684, 220, 1.4, 2.9), (704, 210, 2.4, 3.45)],
-        labels=[('glia', 470, 476, 'Glia', 'Mac terminal for remote hosts;|agents and sessions outlive the connection.'),
-                ('tany', 92, 248, 'Tanycyte', 'Reads the night’s sessions,|commits and papers;|a brief in the morning.'), ('importin', 650, 252, 'Importin', 'Carries your mail into an agent,|read only; nothing goes out.', 'start'),
-                ('lemna', 846, 88, 'Lemna', 'Focused writing over any app;|the text glides on without stopping.', 'start'), ('moin', 860, 474, 'Moin Journal', 'A memory of your days, kept|as files in a folder you own.')],
+        labels=[('glia', 470, 476, 'Glia', 'A Mac terminal for remote machines;|agents keep running when you disconnect.'),
+                ('tany', 92, 248, 'Tanycyte', 'A morning brief on what your|agents and repositories did|overnight, and on new papers.'), ('importin', 650, 252, 'Importin', 'Lets an AI agent read your mail;|it cannot send, move or delete.', 'start'),
+                ('lemna', 846, 88, 'Lemna', 'Write in one line over any app,|then send the text into it.', 'start'), ('moin', 860, 474, 'Moin Journal', 'A private journal, kept as|files in a folder you own.')],
         caps=[(400, 446, 'start'), (650, 320, 'start'), (300, 154, 'start'), (996, 332, 'middle'), (870, 398, 'middle')],
     ),
     'phone': dict(
@@ -415,9 +415,9 @@ LAYOUTS = {
         moin=(70, 896), moin_sc=.82, folder=(150, 872, 96, 62), folder_lab=(254, 912),
         env_r=34, pore_deg=0, pore_k=.8,
         letters=[(330, 216, .4, 2.0), (346, 228, 1.4, 2.9), (362, 218, 2.4, 3.45)],
-        labels=[('glia', 195, 574, 'Glia', 'Mac terminal for remote hosts;|agents and sessions outlive the connection.'),
-                ('tany', 62, 84, 'Tanycyte', 'Reads the night’s sessions, commits and papers;|a brief in the morning.', 'start'), ('importin', 382, 270, 'Importin', 'Carries your mail into an agent,|read only; nothing goes out.', 'end'),
-                ('lemna', 20, 630, 'Lemna', 'Focused writing over any app;|the text glides on without stopping.', 'start'), ('moin', 16, 942, 'Moin Journal', 'A memory of your days, kept as files in a folder you own.', 'start')],
+        labels=[('glia', 195, 574, 'Glia', 'A Mac terminal for remote machines;|agents keep running when you disconnect.'),
+                ('tany', 62, 84, 'Tanycyte', 'Each morning, a brief on what your agents and|repositories did overnight, and on new papers.', 'start'), ('importin', 382, 270, 'Importin', 'Lets an AI agent read your mail;|it cannot send, move or delete.', 'end'),
+                ('lemna', 20, 630, 'Lemna', 'Write in one line over any app,|then send the text into it.', 'start'), ('moin', 16, 942, 'Moin Journal', 'A private journal, kept as files in a folder you own.', 'start')],
         caps=[(378, 430, 'end'), (382, 330, 'end'), (112, 244, 'start'), (185, 826, 'middle'), (382, 818, 'end')],
     ),
 }
